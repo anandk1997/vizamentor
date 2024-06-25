@@ -90,6 +90,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <video src="banner-video-yellow.mp4" loop autoPlay muted preload="auto" />
     </>
   );
 }
