@@ -116,12 +116,44 @@ function NavBar() {
                 onClick={toggleMenu}
               />
             ) : (
-              <img
-                src="/images/hamburger.svg"
-                alt="logo"
-                className="cursor-pointer animate-in fade-in zoom-in mt-[-37px]"
-                onClick={toggleMenu}
-              />
+              <>
+                {!session?.id ? (
+                  <>
+                    <Link
+                      href="/sign-in"
+                      className="hover:text-white text-navText font-[600] cursor-pointer flex items-center gap-2 mt-[-20px]"
+                    >
+                      Login
+                    </Link>
+
+                    <Link href="/sign-up" className="mt-[-20px]">
+                      <MainButton
+                        text="Sign up"
+                        classes="bg-secondary hover:bg-secondary text-navText font-[600] shadow-none rounded-normal border border-none hover:text-white"
+                      />
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <div className="mt-[-20px]">
+                      <UserButton />
+                    </div>
+                    {/* <button
+                      className="hover:text-primary text-navText border-2 border-red-600 py-2 px-8 rounded-full font-[600] cursor-pointer flex items-center gap-2 "
+                      onClick={() => signOut({ redirectUrl: "/" })}
+                    >
+                      Logout
+                    </button> */}
+                  </>
+                )}
+
+                <img
+                  src="/images/hamburger.svg"
+                  alt="logo"
+                  className="cursor-pointer animate-in fade-in zoom-in mt-[-37px]"
+                  onClick={toggleMenu}
+                />
+              </>
             )}
           </div>
         </div>
@@ -149,34 +181,6 @@ function NavBar() {
                 >
                   Bookings
                 </p>
-
-                {!session?.id ? (
-                  <>
-                    <Link
-                      href="/sign-in"
-                      className="hover:text-white text-navText font-[600] cursor-pointer flex items-center gap-2 "
-                    >
-                      Login
-                    </Link>
-
-                    <Link href="/sign-up">
-                      <MainButton
-                        text="Sign up"
-                        classes="bg-secondary hover:bg-secondary text-navText font-[600] shadow-none rounded-normal border border-none hover:text-white"
-                      />
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <UserButton />
-                    {/* <button
-                      className="hover:text-primary text-navText border-2 border-red-600 py-2 px-8 rounded-full font-[600] cursor-pointer flex items-center gap-2 "
-                      onClick={() => signOut({ redirectUrl: "/" })}
-                    >
-                      Logout
-                    </button> */}
-                  </>
-                )}
 
                 <div className="flex gap-2 items-center cursor-pointer">
                   <p className="font-[700]">EN</p>
