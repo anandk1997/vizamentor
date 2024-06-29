@@ -41,7 +41,7 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
       size = "normal",
       isGradient,
     },
-    ref
+    ref,
   ) => {
     const propWidth =
       width === "full_width" ? "w-full" : width ? width : "w-[6.375rem]";
@@ -52,8 +52,8 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
       size === "normal"
         ? "h-[2.256rem]"
         : size === "large"
-        ? "h-[2.256rem]"
-        : "h-[2.625rem]";
+          ? "h-[2.256rem]"
+          : "h-[2.625rem]";
 
     const variant_hover =
       variant === "primary" ? "hover:bg-primary" : "hover:bg-secondary";
@@ -103,7 +103,7 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
         {dataLoadingText}
       </Button>
     );
-  }
+  },
 );
 
 // Assigned display name

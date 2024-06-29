@@ -5,12 +5,16 @@ import { X } from "lucide-react";
 import Link from "next/link";
 import MainButton from "./MainButton";
 import Image from "next/image";
+import { useClerk } from "@clerk/nextjs";
 
 function NavBar() {
   const [menu, setMenu] = useState(false);
+
   const toggleMenu = () => {
     setMenu(!menu);
   };
+
+  const { signOut, session } = useClerk();
 
   return (
     <div className="md:sticky md:top-0   md:shadow-none z-20 h-11">
@@ -48,17 +52,30 @@ function NavBar() {
               Bookings
             </p>
 
-            <Link
-              href="/auth/login"
-              className="hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2 "
-            >
-              Login
-            </Link>
+            {!session?.id ? (
+              <>
+                <Link
+                  href="/sign-in"
+                  className="hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2 "
+                >
+                  Login
+                </Link>
 
-            <MainButton
-              text="Sign up"
-              classes="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
-            />
+                <Link href="/sign-up">
+                  <MainButton
+                    text="Sign up"
+                    classes="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
+                  />
+                </Link>
+              </>
+            ) : (
+              <button
+                className="hover:text-primary text-navText border-2 border-red-600 py-2 px-8 rounded-full font-[600] cursor-pointer flex items-center gap-2 "
+                onClick={() => signOut({ redirectUrl: "/" })}
+              >
+                Logout
+              </button>
+            )}
 
             <div className="flex gap-2 items-center cursor-pointer">
               <p className="font-[700]">EN</p>
@@ -78,7 +95,7 @@ function NavBar() {
       >
         <div className="flex justify-between mx-[10px]">
           <div className="flex gap-[50px] text-[16px] items-center select-none">
-          {!menu && (
+            {!menu && (
               <Image
                 src="/VisaMentor1.png"
                 width={80}
@@ -86,8 +103,8 @@ function NavBar() {
                 className="mt-[-10px] overflow-hidden"
                 alt="logo"
               />
-          )}
-            </div>
+            )}
+          </div>
 
           <div className="flex justify-end items-center gap-[40px]">
             {menu ? (
@@ -130,17 +147,33 @@ function NavBar() {
                   Bookings
                 </p>
 
-                <Link
-                  href="/auth/login"
-                  className="hover:text-white text-navText font-[600] cursor-pointer flex items-center gap-2 "
-                >
-                  Login
-                </Link>
+                {!session?.id ? (
+                  <>
+                    <Link
+                      href="/sign-in"
+                      className="hover:text-white text-navText font-[600] cursor-pointer flex items-center gap-2 "
+                    >
+                      Login
+                    </Link>
 
-                <MainButton
-                  text="Sign up"
-                  classes="bg-secondary hover:bg-secondary text-navText font-[600] shadow-none rounded-normal border border-none hover:text-white"
-                />
+                    <Link href="/sign-up">
+                      <MainButton
+                        text="Sign up"
+                        classes="bg-secondary hover:bg-secondary text-navText font-[600] shadow-none rounded-normal border border-none hover:text-white"
+                      />
+                    </Link>
+                  </>
+                ) : (
+                  <button
+                    className="flex"
+                    onClick={() => signOut({ redirectUrl: "/" })}
+                  >
+                    <MainButton
+                      text="Logout"
+                      classes="bg-secondary hover:bg-secondary text-navText font-[600] shadow-none rounded-normal border border-none hover:text-white"
+                    />
+                  </button>
+                )}
 
                 <div className="flex gap-2 items-center cursor-pointer">
                   <p className="font-[700]">EN</p>
