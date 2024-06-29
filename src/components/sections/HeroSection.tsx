@@ -8,11 +8,12 @@ function HeroSection() {
         <p className="text-[1.128rem] font-[700] text-primary uppercase mb-4">
           Your Trusted Partner in Visa and Immigration Services
         </p>
+
         <div className="flex flex-col">
           <div className="volkhov font-[700] text-[3rem] md:text-[4.73756rem] leading-large inline-flex text-lightBlue">
-            हमारा
+            हम
             <div className="flex  flex-col">
-              <span className="ml-8 z-10">लक्ष्य:</span>
+              <span className="ml-8 z-10">Gyaan</span>
 
               <img
                 src="/images/stylish-underline.png"
@@ -23,7 +24,7 @@ function HeroSection() {
           </div>
 
           <p className="volkhov font-[700] text-[3rem] md:text-[4.73756rem] leading-large inline-flex text-lightBlue mt-4">
-            ज्ञान नहीं, कौशल विकास
+            नहीं Skills बाँटते हैं
           </p>
         </div>
 
