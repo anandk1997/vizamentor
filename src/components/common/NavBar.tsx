@@ -71,12 +71,12 @@ function NavBar() {
             ) : (
               <>
                 <UserButton />
-                <button
+                {/* <button
                   className="hover:text-primary text-navText border-2 border-red-600 py-2 px-8 rounded-full font-[600] cursor-pointer flex items-center gap-2 "
                   onClick={() => signOut({ redirectUrl: "/" })}
                 >
                   Logout
-                </button>
+                </button> */}
               </>
             )}
 
@@ -169,12 +169,12 @@ function NavBar() {
                 ) : (
                   <>
                     <UserButton />
-                    <button
+                    {/* <button
                       className="hover:text-primary text-navText border-2 border-red-600 py-2 px-8 rounded-full font-[600] cursor-pointer flex items-center gap-2 "
                       onClick={() => signOut({ redirectUrl: "/" })}
                     >
                       Logout
-                    </button>
+                    </button> */}
                   </>
                 )}
 
