@@ -10,7 +10,7 @@ interface IProps {
 function CatergoryCard({ iconUrl, title, description, highlighted }: IProps) {
   return (
     <div
-      className={`flex relative flex-col gap-4 items-center p-[2.5rem] ${
+      className={`flex relative md:w-1/4 flex-col gap-4 items-center p-[2.5rem] ${
         highlighted ? "bg-white shadow-md rounded-[2.5rem]" : ""
       }`}
     >
