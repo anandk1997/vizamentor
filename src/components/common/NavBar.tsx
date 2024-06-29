@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import Link from "next/link";
 import MainButton from "./MainButton";
 import Image from "next/image";
-import { useClerk } from "@clerk/nextjs";
+import { UserButton, useClerk } from "@clerk/nextjs";
 
 function NavBar() {
   const [menu, setMenu] = useState(false);
@@ -69,12 +69,15 @@ function NavBar() {
                 </Link>
               </>
             ) : (
-              <button
-                className="hover:text-primary text-navText border-2 border-red-600 py-2 px-8 rounded-full font-[600] cursor-pointer flex items-center gap-2 "
-                onClick={() => signOut({ redirectUrl: "/" })}
-              >
-                Logout
-              </button>
+              <>
+                <UserButton />
+                <button
+                  className="hover:text-primary text-navText border-2 border-red-600 py-2 px-8 rounded-full font-[600] cursor-pointer flex items-center gap-2 "
+                  onClick={() => signOut({ redirectUrl: "/" })}
+                >
+                  Logout
+                </button>
+              </>
             )}
 
             <div className="flex gap-2 items-center cursor-pointer">
@@ -164,15 +167,15 @@ function NavBar() {
                     </Link>
                   </>
                 ) : (
-                  <button
-                    className="flex"
-                    onClick={() => signOut({ redirectUrl: "/" })}
-                  >
-                    <MainButton
-                      text="Logout"
-                      classes="bg-secondary hover:bg-secondary text-navText font-[600] shadow-none rounded-normal border border-none hover:text-white"
-                    />
-                  </button>
+                  <>
+                    <UserButton />
+                    <button
+                      className="hover:text-primary text-navText border-2 border-red-600 py-2 px-8 rounded-full font-[600] cursor-pointer flex items-center gap-2 "
+                      onClick={() => signOut({ redirectUrl: "/" })}
+                    >
+                      Logout
+                    </button>
+                  </>
                 )}
 
                 <div className="flex gap-2 items-center cursor-pointer">
