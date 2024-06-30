@@ -8,6 +8,7 @@ import NewsLetterSection from "@/components/sections/NewsLetterSection";
 import { Satisfied } from "@/components/sections/Satisfied";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import TopSellingSection from "@/components/sections/TopSellingSection";
+import { VizMentor } from "@/components/sections/VizMentor";
 
 export default function Home() {
   return (
@@ -32,6 +33,8 @@ export default function Home() {
         </div>
 
         <TopSellingSection />
+
+        <VizMentor />
         <BookNextTripSection />
         <TestimonialSection />
         <Satisfied />

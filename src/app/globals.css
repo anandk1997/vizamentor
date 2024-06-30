@@ -13,3 +13,9 @@
 .red-gradient {
   background: linear-gradient(180deg, #ff946d 0%, #ff7d68 100%);
 }
+
+.imm {
+  /* background: url(../../public/bg.png); */
+  /* background-size: contain;
+  background-repeat: no-repeat; */
+}
