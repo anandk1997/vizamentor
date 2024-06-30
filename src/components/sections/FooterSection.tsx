@@ -5,8 +5,8 @@ function FooterSection() {
     <section>
       <div className="flex flex-col md:flex-row justify-between gap-8 ">
         <div>
-          <p>
-            <img src="/images/logo-bottom.png" alt="footer logo" />
+          <p className="text-4xl  text-black-600 font-bold font-serif">
+            VizaMentor
           </p>
           <p className="text-lightGray mt-[1.19rem]">
             Book your trip in minute, get full Control for much longer.
