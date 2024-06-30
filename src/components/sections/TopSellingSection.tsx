@@ -6,25 +6,25 @@ function TopSellingSection() {
     {
       id: 0,
       imageUrl: "/images/rome.png",
-      title: "Rome, Italy",
-      amount: "$5.42k",
-      duration: "10 Days Trip",
+      title: "Canada",
+      amount: "₹ 3000",
+      // duration: "10 Days Trip",
       highlighted: false,
     },
     {
       id: 1,
       imageUrl: "/images/london.jpg",
-      title: "London, UK",
-      amount: "$4.2k",
-      duration: "12 Days Trip",
+      title: "Australia",
+      amount: "₹ 3000",
+      // duration: "12 Days Trip",
       highlighted: false,
     },
     {
       id: 2,
       imageUrl: "/images/europe.png",
-      title: "Full Europe",
-      amount: "$15k",
-      duration: "28 Days Trip",
+      title: "United States",
+      amount: "₹ 3000",
+      // duration: "28 Days Trip",
       highlighted: true,
     },
   ];
@@ -34,7 +34,7 @@ function TopSellingSection() {
         Top Selling
       </p>
       <p className="volkhov text-[3.125rem] text-title font-[700] text-center">
-        Top Destinations
+        Top Courses
       </p>
       <div className="flex flex-col gap-4 md:flex-row items-center md:justify-between mt-16 w-full">
         {destinations.map((destination) => (
@@ -42,12 +42,23 @@ function TopSellingSection() {
             key={destination.id}
             imageUrl={destination.imageUrl}
             title={destination.title}
-            duration={destination.duration}
+            // duration={destination.duration??""}
+            duration={""}
             amount={destination.amount}
             highlighted={destination.highlighted}
           />
         ))}
       </div>
+
+      <button
+        className="bg-[black] hover:bg-[black]/90 text-white mx-auto text-sm md:text-base transition font-medium duration-200 h-10 rounded-lg px-8 flex items-center justify-center"
+        style={{
+          boxShadow:
+            "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
+        }}
+      >
+        Bundled Pricing ₹ 10000 only
+      </button>
     </section>
   );
 }
