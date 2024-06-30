@@ -1,4 +1,6 @@
+import Link from "next/link";
 import React from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
 function FooterSection() {
   return (
@@ -32,13 +34,21 @@ function FooterSection() {
               Contact
             </p>
             <div className="flex flex-col gap-2">
-              <p className="text-lightGray text-[1.125rem] font-[500]">
-                Help/FAQ
-              </p>
-              <p className="text-lightGray text-[1.125rem] font-[500]">Press</p>
-              <p className="text-lightGray text-[1.125rem] font-[500]">
-                Affilates
-              </p>
+              <a
+                href="tel:+919914961214"
+                className="text-lightGray text-[1.125rem] font-[500]"
+              >
+                +91 99149-61214
+              </a>
+              <a
+                href="tel:+916280434126"
+                className="text-lightGray text-[1.125rem] font-[500]"
+              >
+                +91 62804-34126
+              </a>
+              <Link href={"https://wa.me/6280434126"}>
+                <FaWhatsapp className="" />
+              </Link>{" "}
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -58,11 +68,11 @@ function FooterSection() {
         </div>
         <div className="flex flex-col gap-4 items-center">
           <div className="flex gap-4 items-center">
-            <img src="/images/facebook-icon.png" alt="social icon" />
+            {/* <img src="/images/facebook-icon.png" alt="social icon" />
             <img src="/images/instagram-icon.png" alt="social icon" />
-            <img src="/images/x-icon.png" alt="social icon" />
+            <img src="/images/x-icon.png" alt="social icon" /> */}
           </div>
-          <p className="text-lightGray font-[500] text-[1.25rem]">
+          {/* <p className="text-lightGray font-[500] text-[1.25rem]">
             Discover our app
           </p>
           <div className="flex flex-col md:flex-row gap-8">
@@ -103,7 +113,7 @@ function FooterSection() {
               </div>
               <div></div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <p className="my-[5.25rem] text-lightGray text-[0.875rem] font-[600] flex justify-center">

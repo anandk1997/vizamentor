@@ -37,12 +37,12 @@ export default function Home() {
 
         <VizMentor />
 
-        <Features/>
+        <Features />
         <BookNextTripSection />
         <TestimonialSection />
         <Satisfied />
-        <LogoGroupSection />
-        <NewsLetterSection />
+        {/* <LogoGroupSection /> */}
+        {/* <NewsLetterSection /> */}
         <FooterSection />
       </div>
     </main>
