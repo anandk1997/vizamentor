@@ -5,6 +5,7 @@ import FooterSection from "@/components/sections/FooterSection";
 import HeroSection from "@/components/sections/HeroSection";
 import LogoGroupSection from "@/components/sections/LogoGroupSection";
 import NewsLetterSection from "@/components/sections/NewsLetterSection";
+import { Satisfied } from "@/components/sections/Satisfied";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import TopSellingSection from "@/components/sections/TopSellingSection";
 
@@ -33,6 +34,7 @@ export default function Home() {
         <TopSellingSection />
         <BookNextTripSection />
         <TestimonialSection />
+        <Satisfied />
         <LogoGroupSection />
         <NewsLetterSection />
         <FooterSection />
