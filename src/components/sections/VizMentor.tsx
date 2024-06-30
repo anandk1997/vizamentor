@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { MultiStepLoader as Loader } from "../ui/multi-step-loader";
 import { IconSquareRoundedX } from "@tabler/icons-react";
+
+import { CardBody, CardContainer } from "../ui/3d-card";
 
 export const VizMentor = () => {
   return (
@@ -24,44 +26,52 @@ export const VizMentor = () => {
           src="/bg.png"
           height={500}
           width={300}
-          className="mt-[-100px] h-[700px] w-[500px]"
+          className="mt-[-100px] md:mt-[-200px] h-[700px] w-[500px]"
           alt=""
         />
 
-        <div className="flex flex-col pt-12 gap-7 w-[80%] md:w-[50%] mb-28">
-          <p className="text-[2.125rem] font-bold font-serif">
-            Priyanka Bhatia
-          </p>
+        <div className="flex flex-col w-[80%] md:w-[50%] mb-28 md:mb-0">
+          <CardContainer className="inter-var">
+            <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+              <div className="flex flex-col gap-7 w-[100%] md:w-[100%]">
+                <p className="text-[2.125rem] font-bold font-serif">
+                  Priyanka Bhatia
+                </p>
 
-          <p>
-            At Viza Mentor, I am Priyanka Bhatia, and I've dedicated my career
-            to guiding individuals like you through the complexities of
-            immigration.
-          </p>
+                <p>
+                  At Viza Mentor, I am Priyanka Bhatia, and I've dedicated my
+                  career to guiding individuals like you through the
+                  complexities of immigration.
+                </p>
 
-          <p>
-            With over
-            <b className="mx-2">10 years of experience in Immigration,</b>
-            Admission, Career Counselling, and visa filling, I understand the
-            challenges and opportunities of starting afresh in a different land.
-          </p>
-          <p>
-            This course isn't just about legal processes; it's about empowering
-            you with knowledge and strategies to make informed decisions that
-            will shape your future.
-          </p>
+                <p>
+                  With over
+                  <b className="mx-2">10 years of experience in Immigration,</b>
+                  Admission, Career Counselling, and visa filling, I understand
+                  the challenges and opportunities of starting afresh in a
+                  different land.
+                </p>
+                <p>
+                  This course isn't just about legal processes; it's about
+                  empowering you with knowledge and strategies to make informed
+                  decisions that will shape your future.
+                </p>
 
-          <p>
-            Whether you're navigating visa applications, understanding cultural
-            nuances, or planning your career path abroad, my goal is to equip
-            you with practical insights and resources to thrive in your new
-            environment.
-          </p>
+                <p>
+                  Whether you're navigating visa applications, understanding
+                  cultural nuances, or planning your career path abroad, my goal
+                  is to equip you with practical insights and resources to
+                  thrive in your new environment.
+                </p>
 
-          {/* <p>
+                {/* <p>
             Join me in this workshop and let’s take the first step towards your
             success together.
             </p> */}
+              </div>
+            </CardBody>
+          </CardContainer>
+
           <MultiStepLoaderDemo />
         </div>
       </div>
@@ -91,11 +101,9 @@ function MultiStepLoaderDemo() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="flex items-center justify-center pt-4">
-      {/* Core Loader Modal */}
+    <div className="flex items-center justify-center z-[1111111]">
       <Loader loadingStates={loadingStates} loading={loading} duration={2000} />
 
-      {/* The buttons are for demo only, remove it in your actual code ⬇️ */}
       <button
         onClick={() => setLoading(true)}
         className="bg-[black] hover:bg-[black]/90 text-white mx-auto text-sm md:text-base transition font-medium duration-200 h-10 rounded-lg px-8 flex items-center justify-center"
@@ -109,7 +117,7 @@ function MultiStepLoaderDemo() {
 
       {loading && (
         <button
-          className="fixed top-4 right-4 text-black dark:text-white z-[12000000]"
+          className="fixed top-4 right-4 text-black dark:text-white z-[9999999999999999]"
           onClick={() => setLoading(false)}
         >
           <IconSquareRoundedX className="h-10 w-10" />
