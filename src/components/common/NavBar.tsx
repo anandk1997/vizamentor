@@ -31,7 +31,7 @@ function NavBar() {
             />
           </div>
           <div className="flex gap-[20px] xl:gap-[50px] text-[16px] items-center select-none mt-[-40px]">
-            <p
+            {/* <p
               className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
             >
               Destinations
@@ -50,7 +50,7 @@ function NavBar() {
               className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
             >
               Bookings
-            </p>
+            </p> */}
 
             {!session?.id ? (
               <>
@@ -80,12 +80,12 @@ function NavBar() {
               </>
             )}
 
-            <div className="flex gap-2 items-center cursor-pointer">
+            {/* <div className="flex gap-2 items-center cursor-pointer">
               <p className="font-[700]">EN</p>
               <div>
                 <img src="/images/chevron-down.png" alt="chevron down" />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -147,12 +147,12 @@ function NavBar() {
                   </>
                 )}
 
-                <img
+                {/* <img
                   src="/images/hamburger.svg"
                   alt="logo"
                   className="cursor-pointer animate-in fade-in zoom-in mt-[-37px]"
                   onClick={toggleMenu}
-                />
+                /> */}
               </>
             )}
           </div>
@@ -182,12 +182,12 @@ function NavBar() {
                   Bookings
                 </p>
 
-                <div className="flex gap-2 items-center cursor-pointer">
+                {/* <div className="flex gap-2 items-center cursor-pointer">
                   <p className="font-[700]">EN</p>
                   <div>
                     <img src="/images/chevron-down.png" alt="chevron down" />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

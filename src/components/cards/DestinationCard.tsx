@@ -35,6 +35,16 @@ function DestinationCard({
           </div>
           <p className="text-lightGray font-bold">{duration}</p>
         </div>
+
+        <button
+          className="bg-[black] hover:bg-[black]/90 text-white mx-auto text-sm md:text-base transition font-medium duration-200 h-10 rounded-lg px-8 flex items-center justify-center"
+          style={{
+            boxShadow:
+              "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
+          }}
+        >
+          Buy Now
+        </button>
       </div>
       {highlighted && (
         <div className="absolute bottom-[5rem] right-[-4rem] -z-10 hidden md:block">

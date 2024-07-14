@@ -5,7 +5,7 @@ function TopSellingSection() {
   const destinations = [
     {
       id: 0,
-      imageUrl: "/images/rome.png",
+      imageUrl: "/images/canada.jpg",
       title: "Canada",
       amount: "₹ 3000",
       // duration: "10 Days Trip",
@@ -13,7 +13,7 @@ function TopSellingSection() {
     },
     {
       id: 1,
-      imageUrl: "/images/london.jpg",
+      imageUrl: "/images/austrailia.jpg",
       title: "Australia",
       amount: "₹ 3000",
       // duration: "12 Days Trip",
@@ -21,7 +21,7 @@ function TopSellingSection() {
     },
     {
       id: 2,
-      imageUrl: "/images/europe.png",
+      imageUrl: "/images/america.jpg",
       title: "United States",
       amount: "₹ 3000",
       // duration: "28 Days Trip",
