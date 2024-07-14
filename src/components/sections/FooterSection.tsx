@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaWhatsapp, FaYoutube } from "react-icons/fa";
 
 function FooterSection() {
   return (
@@ -46,9 +46,29 @@ function FooterSection() {
               >
                 +91 62804-34126
               </a>
-              <Link href={"https://wa.me/6280434126"}>
-                <FaWhatsapp className="" />
-              </Link>{" "}
+
+              <div className="flex gap-3">
+                <Link href={"https://wa.me/6280434126"}>
+                  <FaWhatsapp />
+                </Link>{" "}
+                <Link
+                  href={
+                    "https://www.instagram.com/viza_mentor?igsh=MTRwMmhobm52dnN0Mw=="
+                  }
+                >
+                  <FaInstagram />
+                </Link>
+                <Link
+                  href={
+                    "https://www.facebook.com/people/Viza-Mentor/61562695348540/?mibextid=ZbWKwL"
+                  }
+                >
+                  <FaFacebook />
+                </Link>
+                <Link href={"https://www.youtube.com/@VizaMentorbyPriyanka"}>
+                  <FaYoutube color="red" />
+                </Link>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-4">

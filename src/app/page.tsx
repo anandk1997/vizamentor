@@ -38,7 +38,7 @@ export default function Home() {
         <VizMentor />
 
         <Features />
-        <BookNextTripSection />
+        {/* <BookNextTripSection /> */}
         <TestimonialSection />
         <Satisfied />
         {/* <LogoGroupSection /> */}

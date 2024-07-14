@@ -1,42 +1,40 @@
-import { NextRequest, NextResponse } from 'next/server';
-import crypto from 'crypto';
-import { env } from '@/lib/env/intex';
-import { customErrorResponse } from '@/lib/utils';
+import { NextRequest, NextResponse } from "next/server";
+import crypto from "crypto";
+import { env } from "@/lib/env/intex";
+import { customErrorResponse } from "@/lib/utils";
 
 const generatedSignature = (
- razorpayOrderId: string,
- razorpayPaymentId: string
+  razorpayOrderId: string,
+  razorpayPaymentId: string,
 ) => {
- const keySecret = env.RAZORPAY_SECRET;
- if (!keySecret) {
-  throw new Error(
-   'Razorpay key secret is not defined in environment variables.'
-  );
- }
- const sig = crypto
-  .createHmac('sha256', keySecret)
-  .update(razorpayOrderId + '|' + razorpayPaymentId)
-  .digest('hex');
- return sig;
+  const keySecret = env.RAZORPAY_SECRET;
+  if (!keySecret) {
+    throw new Error(
+      "Razorpay key secret is not defined in environment variables.",
+    );
+  }
+  const sig = crypto
+    .createHmac("sha256", keySecret)
+    .update(razorpayOrderId + "|" + razorpayPaymentId)
+    .digest("hex");
+  return sig;
 };
 
-
 export async function POST(request: NextRequest) {
- const { orderCreationId, razorpayPaymentId, razorpaySignature } =
-  await request.json();
+  const { orderCreationId, razorpayPaymentId, razorpaySignature } =
+    await request.json();
 
- const signature = generatedSignature(orderCreationId, razorpayPaymentId);
- if (signature !== razorpaySignature) {
+  const signature = generatedSignature(orderCreationId, razorpayPaymentId);
+  if (signature !== razorpaySignature) {
+    return NextResponse.json(
+      { message: "payment verification failed", isOk: false },
+      { status: 400 },
+    );
+  }
   return NextResponse.json(
-   { message: 'payment verification failed', isOk: false },
-   { status: 400 }
+    { message: "payment verified successfully", isOk: true },
+    { status: 200 },
   );
- }
- return NextResponse.json(
-  { message: 'payment verified successfully', isOk: true },
-  { status: 200 }
- );
 
-// return customErrorResponse("Internal Server Error", 500);
-
+  // return customErrorResponse("Internal Server Error", 500);
 }

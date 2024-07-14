@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export const customErrorResponse = (
   message: string,
   statusCode?: number,
-  statusText?: string
+  statusText?: string,
 ) =>
   new Response(
     JSON.stringify({
@@ -18,5 +18,5 @@ export const customErrorResponse = (
     {
       status: statusCode ?? 400,
       statusText: statusText ?? message,
-    }
+    },
   );

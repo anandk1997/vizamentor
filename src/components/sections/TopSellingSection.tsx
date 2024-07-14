@@ -57,7 +57,7 @@ function TopSellingSection() {
             "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
         }}
       >
-        Bundled Pricing ₹ 10000 only
+        Program fees ₹ 10000 only
       </button>
     </section>
   );

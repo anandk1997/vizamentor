@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import  { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   return (
