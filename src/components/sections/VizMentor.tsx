@@ -26,7 +26,7 @@ export const VizMentor = () => {
           src="/bg.png"
           height={500}
           width={300}
-          className="mt-[-100px] md:mt-[-200px] h-[700px] w-[500px]"
+          className="mt-[-100px] md:mt-[-200px] h-[500px] w-[350px] md:h-[700px] md:w-[500px]"
           alt=""
         />
 

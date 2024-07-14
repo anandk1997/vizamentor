@@ -15,7 +15,7 @@ function FooterSection() {
           </p>
         </div>
         <div className="flex gap-8 flex-grow justify-between">
-          <div className="flex flex-col gap-4">
+          {/* <div className="flex flex-col gap-4">
             <p className="text-lightBlack font-[700] text-[1.3125rem]">
               Company
             </p>
@@ -28,7 +28,7 @@ function FooterSection() {
                 Mobile
               </p>
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col gap-4">
             <p className="text-lightBlack font-[700] text-[1.3125rem]">
               Contact
@@ -71,7 +71,7 @@ function FooterSection() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-4">
+          {/* <div className="flex flex-col gap-4">
             <p className="text-lightBlack font-[700] text-[1.3125rem]">More</p>
             <div className="flex flex-col gap-2">
               <p className="text-lightGray text-[1.125rem] font-[500]">
@@ -84,7 +84,7 @@ function FooterSection() {
                 Low fare tips
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-col gap-4 items-center">
           <div className="flex gap-4 items-center">
