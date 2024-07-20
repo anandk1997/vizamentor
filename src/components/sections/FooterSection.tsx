@@ -10,9 +10,9 @@ function FooterSection() {
           <p className="text-4xl  text-black-600 font-bold font-serif">
             VizaMentor
           </p>
-          <p className="text-lightGray mt-[1.19rem]">
+          {/* <p className="text-lightGray mt-[1.19rem]">
             Book your trip in minute, get full Control for much longer.
-          </p>
+          </p> */}
         </div>
         <div className="flex gap-8 flex-grow justify-between">
           {/* <div className="flex flex-col gap-4">

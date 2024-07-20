@@ -35,7 +35,7 @@ function CategorySection() {
       id: 3,
       // iconUrl: "/images/cog.png",
       iconUrl: "/images/aircraft.png",
-      title: "How to wrote SOP",
+      title: "How to write SOP",
       description:
         "Detailed guidance on crafting a compelling Statement of Purpose (SOP) for your academic or professional applications, tailored to highlight your strengths and ambitions.",
       highlighted: false,
@@ -75,7 +75,7 @@ function CategorySection() {
         Category
       </p>
       <p className="volkhov text-[3.125rem] text-title font-[700] text-center">
-        We Offer Best Services
+        We Offer Best Visa Training Courses
       </p>
       <div className="flex flex-col gap-4 md:flex-row justify-between flex-wrap w-full mt-16">
         {features.map((feature) => (
