@@ -28,6 +28,17 @@ function TopSellingSection() {
       highlighted: true,
     },
   ];
+
+  const currentDate = new Date();
+  const futureDate = new Date(currentDate.getTime() + 2 * 24 * 60 * 60 * 1000);
+
+  const options: Intl.DateTimeFormatOptions = {
+    month: "short",
+    day: "2-digit",
+  };
+
+  const formattedDate = futureDate.toLocaleDateString("en-US", options);
+
   return (
     <section>
       <p className="text-lightGray text-[1.125rem] font-[600] text-center">
@@ -49,6 +60,10 @@ function TopSellingSection() {
           />
         ))}
       </div>
+
+      <span className="flex mx-auto text-center w-[500px] py-3 rounded-full text-white text-3xl justify-center mb-3 bg-red-700 bounce">
+        Grab your offer before {formattedDate.toString()}
+      </span>
 
       <button
         className="bg-[black] hover:bg-[black]/90 text-white mx-auto text-sm md:text-base transition font-medium duration-200 h-10 rounded-lg px-8 flex items-center justify-center"

@@ -25,9 +25,24 @@ function DestinationCard({
         />
       </div>
       <div className="bg-white w-full mt-[1.69rem] px-[1.62rem]  group-hover:shadow-md pb-[2rem] group-hover:rounded-[1.5rem]">
-        <div className="flex justify-between text-lightGray text-[1.125rem] font-bold">
+        <div className="flex justify-end pr-3">
+          <span className="bg-red-700 rounded-full px-2 py-1 text-white text-sm">
+            Deal of day
+          </span>
+        </div>
+
+        <div className="flex justify-between text-lightGray text-[1.125rem] font-bold gap-2">
           <p>{title}</p>
-          <p>{amount}</p>
+          <span className="text-red-700">- 50%</span>
+          <span>
+            <p>{amount}</p>
+            <span className="flex gap-1">
+              <span className="">MRP:</span>
+              <span className="line-through font-thin ">
+                ₹{parseInt(amount?.split(" ")[1]) * 2}
+              </span>
+            </span>
+          </span>
         </div>
         <div className="flex gap-4 items-center">
           <div>
