@@ -89,13 +89,13 @@ function CategorySection() {
         ))}
       </div>
 
-      <div className="">
+      {/* <div className="">
         <h2 className="text-4xl font-bold font-serif text-center">
           Here's a structured approach to what we will include:
         </h2>
-      </div>
+      </div> */}
 
-      <CardHoverEffectDemo />
+      {/* <CardHoverEffectDemo /> */}
     </section>
   );
 }

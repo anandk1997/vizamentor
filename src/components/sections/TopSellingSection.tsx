@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import DestinationCard from "../cards/DestinationCard";
 
 function TopSellingSection() {
@@ -39,6 +41,47 @@ function TopSellingSection() {
 
   const formattedDate = futureDate.toLocaleDateString("en-US", options);
 
+  const [seconds, setSeconds] = useState(895);
+  const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    const startTimer = () => {
+      setIsRunning(true);
+    };
+
+    // Start the timer automatically when the component mounts
+    startTimer();
+
+    let interval: any;
+
+    if (isRunning) {
+      interval = setInterval(() => {
+        // Decrease seconds by 1
+        setSeconds((prevSeconds) => {
+          if (prevSeconds === 0) {
+            // If seconds reach 0, stop the timer
+            setIsRunning(false);
+            return 895; // Reset seconds to initial value (or set to new value)
+          } else {
+            return prevSeconds - 1;
+          }
+        });
+      }, 1000);
+    }
+
+    // Clear interval when isRunning changes to false
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isRunning]);
+
+  const formatTime = (timeInSeconds: number) => {
+    const hours = Math.floor(timeInSeconds / 3600);
+    const minutes = Math.floor((timeInSeconds % 3600) / 60);
+    const seconds = timeInSeconds % 60;
+    return `${hours}:${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
   return (
     <section>
       <p className="text-lightGray text-[1.125rem] font-[600] text-center">
@@ -61,18 +104,43 @@ function TopSellingSection() {
         ))}
       </div>
 
-      <span className="flex mx-auto text-center w-[500px] py-3 rounded-full text-white text-3xl justify-center mb-3 bg-red-700 bounce">
-        Grab your offer before {formattedDate.toString()}
+      <span className="flex mx-auto text-center max-w-[800px] py-3 rounded-full text-white text-3xl justify-center flex-wrap mb-3 bg-red-700 bounce">
+        {/* Grab your offer before {formattedDate.toString()} */}
+        TIME IS RUNNING OUT. GRAB YOUR SPOT FAST
       </span>
 
+      <div className="flex justify-center gap-4">
+        <div className="">
+          <h1 className="bg-black px-16 py-4 rounded-lg text-green-500 flex flex-col gap-2 justify-center align-middle items-center">
+            <span className="text-6xl font-bold">
+              {formatTime(seconds).split(":")[1]}
+            </span>
+
+            <span className="text-white text-xl">Minutes</span>
+          </h1>
+        </div>
+
+        <div className="">
+          <h1 className="bg-black px-16 py-4 rounded-lg text-green-500 flex flex-col gap-2 justify-center align-middle items-center">
+            <span className="text-6xl font-bold">
+              {formatTime(seconds).split(":")[2]}
+            </span>
+
+            <span className="text-white text-xl">Seconds</span>
+          </h1>
+        </div>
+      </div>
+
       <button
-        className="bg-[black] hover:bg-[black]/90 text-white mx-auto text-sm md:text-base transition font-medium duration-200 h-10 rounded-lg px-8 flex items-center justify-center"
+        className="bg-[black] hover:bg-[black]/90 text-white mx-auto text-2xl transition font-medium duration-200 h-auto rounded-lg px-8 flex items-center justify-center flex-wrap mt-3"
         style={{
           boxShadow:
             "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
         }}
       >
-        Program fees ₹ 10000 only
+        Limited seats{" "}
+        <span className="line-through font-thin mx-3">₹{9999 * 2}</span> ₹ 9999
+        only
       </button>
     </section>
   );
