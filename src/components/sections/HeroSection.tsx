@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import MainButton from "../common/MainButton";
 
-function HeroSection() {
+function HeroSection({ setIsDemo }: any) {
   return (
     <section className="flex justify-between items-center mt-16 md:z-[9999]">
       <div className="pt-32 md:pt-4">
@@ -41,7 +43,10 @@ function HeroSection() {
               classes="bg-secondary text-white font-[600] shadow-none rounded-[0.564rem] border-none hover:bg-secondary  w-[9.58788rem] h-[3rem]"
             />
           </div>
-          <div className="flex items-center mt-6 hover:cursor-pointer">
+          <div
+            className="flex items-center mt-6 hover:cursor-pointer"
+            onClick={setIsDemo}
+          >
             <img
               src="/images/play-shadow.png"
               alt="rounded play icon with shadow"
@@ -50,9 +55,7 @@ function HeroSection() {
           </div>
         </div>
       </div>
-      <div
-      // className="hidden md:block"
-      >
+      <div>
         <img
           src="/images/lady-with-aircraft.png"
           alt="girl with phone with aircrafts on the background"
