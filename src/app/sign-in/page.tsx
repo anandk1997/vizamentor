@@ -33,7 +33,7 @@ export default function LoginForm() {
 
       toast.error(
         error?.response?.data?.message ??
-          "Something went wrong. Please try again."
+          "Something went wrong. Please try again.",
       );
     }
   };

@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     if (!parsed.success) {
       return NextResponse.json(
         { message: `Validation Error: ${parsed.error.message}` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     if (existingUser) {
       return NextResponse.json(
         { message: "Email already in use" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     if (existingPhone) {
       return NextResponse.json(
         { message: "Phone number already in use" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -69,18 +69,16 @@ export async function POST(req: Request) {
       password: hashedPassword,
     });
 
-    console.log("User created:", user);
-
     return NextResponse.json(
       { message: "User Created Successfully", data: user },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (err) {
     console.error("Error creating user:", err);
 
     return NextResponse.json(
       { message: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

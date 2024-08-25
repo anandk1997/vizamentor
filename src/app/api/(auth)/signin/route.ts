@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     const token = jwt.sign(
       { id: user._id, email: user.email },
       env.JWT_SECRET!,
-      { expiresIn: "24h" }
+      { expiresIn: "24h" },
     );
 
     return NextResponse.json(
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
         token,
         data: user,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("error...", error);
