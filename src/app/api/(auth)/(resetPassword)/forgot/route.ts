@@ -52,7 +52,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       { message: "Password reset email sent", data: res },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("error...", error);

@@ -71,6 +71,22 @@ function FooterSection() {
               </div>
             </div>
           </div>
+
+          <div className="flex flex-col gap-4">
+            <Link
+              href="/terms"
+              className="text-lightBlack font-[700] text-[1.3125rem]"
+            >
+              Terms & Conditions
+            </Link>
+
+            <Link
+              href="/privacy"
+              className="text-lightBlack font-[700] text-[1.3125rem]"
+            >
+              Privacy Policy
+            </Link>
+          </div>
           {/* <div className="flex flex-col gap-4">
             <p className="text-lightBlack font-[700] text-[1.3125rem]">More</p>
             <div className="flex flex-col gap-2">
