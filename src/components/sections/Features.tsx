@@ -65,14 +65,14 @@ const FEATURES = [
     icon: "/calendar.svg",
     variant: "green",
     description:
-      "With over 10 years of experience in immigration law, visa processing, and cultural adaptation, we bring a wealth of knowledge to every aspect of your journey. Whether you're navigating the legal landscape or seeking practical advice on settling in a new country, we're here to provide clear, actionable insights.",
+      "With over 10 years of experience in visa processing, and cultural adaptation, we bring a wealth of knowledge to every aspect of your journey. Whether you're navigating the legal landscape or seeking practical advice on settling in a new country, we're here to provide clear, actionable insights.",
   },
   {
     title: "Empowerment Through Education",
     icon: "/tech.svg",
     variant: "green",
     description:
-      "Knowledge is power. Our course goes beyond mere instruction; it empowers you with in-depth understanding and practical skills to confidently navigate the challenges of immigration. From visa applications to cultural integration tips, we equip you with the tools you need to succeed.",
+      "Knowledge is power. Our course goes beyond mere instruction; it empowers you with in-depth understanding and practical skills to confidently navigate the challenges. From visa applications to cultural integration tips, we equip you with the tools you need to succeed.",
   },
   {
     title: "Community and Support",

@@ -8,7 +8,7 @@ function HeroSection({ setIsDemo }: any) {
     <section className="flex justify-between items-center mt-16 md:z-[9999]">
       <div className="pt-32 md:pt-4">
         <p className="text-[1.128rem] font-[700] text-primary uppercase mb-4">
-          Your Trusted Partner in Visa and Immigration Services
+          Your Trusted Partner in aquiring skills.
         </p>
 
         <div className="flex flex-col">
@@ -31,9 +31,8 @@ function HeroSection({ setIsDemo }: any) {
         </div>
 
         <p className="my-[1.6rem] font-bold leading-[1.692rem] text-lightGray text-[1rem]">
-          VizaMentor specializes in providing comprehensive visa and immigration
-          services, ensuring seamless journeys for individuals and families
-          worldwide.
+          VizaMentor specializes in providing comprehensive training, ensuring
+          seamless skills for individuals worldwide.
         </p>
 
         <div className="flex gap-6 items-center ">

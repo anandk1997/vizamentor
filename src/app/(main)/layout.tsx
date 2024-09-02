@@ -7,7 +7,7 @@ import FooterSection from "@/components/sections/FooterSection";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: "A Agency provides Visa and Immigrations",
+  description: "",
 };
 
 export default function MainLayout({

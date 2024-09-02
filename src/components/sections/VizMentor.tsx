@@ -41,12 +41,12 @@ export const VizMentor = () => {
                 <p>
                   At Viza Mentor, I am Priyanka Bhatia, and I've dedicated my
                   career to guiding individuals like you through the
-                  complexities of immigration.
+                  complexities.
                 </p>
 
                 <p>
                   With over
-                  <b className="mx-2">10 years of experience in Immigration,</b>
+                  <b className="mx-2">10 years of experience in industry,</b>
                   Admission, Career Counselling, and visa filling, I understand
                   the challenges and opportunities of starting afresh in a
                   different land.
@@ -87,13 +87,13 @@ const loadingStates = [
     text: "Recent Graduates",
   },
   {
-    text: "* Immigration Startups",
+    text: "* Startups",
   },
   {
     text: "* B2B agents",
   },
   {
-    text: "* Anyone who wants to learn immigration visa process.",
+    text: "* Anyone who wants to learn visa process.",
   },
 ];
 

@@ -156,7 +156,7 @@ export const projects = [
   },
   {
     title: "",
-    description: "Airport Immigration Clearance Part",
+    description: "",
     // description: "",
     link: "",
   },

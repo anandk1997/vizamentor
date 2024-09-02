@@ -12,7 +12,7 @@ const volkhov = Volkhov({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   title: "VizaMentor",
-  description: "A Agency provides Visa and Immigrations",
+  description: "",
 };
 
 export default function RootLayout({
