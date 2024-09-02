@@ -77,6 +77,17 @@ function FooterSection() {
           </div>
 
           <div className="flex flex-col gap-4">
+            <h1 className="text-lightBlack font-[700] text-[1.3125rem]">
+              Address
+            </h1>
+
+            <span>H no. 468</span>
+
+            <span>Sector 39 maloya</span>
+            <span>chandigarh 160025</span>
+          </div>
+
+          <div className="flex flex-col gap-4">
             <Link
               href="/terms"
               className="text-lightBlack font-[700] text-[1.3125rem]"
@@ -89,6 +100,13 @@ function FooterSection() {
               className="text-lightBlack font-[700] text-[1.3125rem]"
             >
               Privacy Policy
+            </Link>
+
+            <Link
+              href="/refund"
+              className="text-lightBlack font-[700] text-[1.3125rem]"
+            >
+              Refund Policy
             </Link>
           </div>
           {/* <div className="flex flex-col gap-4">

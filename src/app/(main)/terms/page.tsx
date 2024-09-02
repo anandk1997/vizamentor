@@ -2,7 +2,7 @@ import React from "react";
 
 const TermsAndConditions = () => {
   return (
-    <div className="terms-and-conditions mt-32">
+    <div className="terms-and-conditions mt-30">
       <h1 className="text-center font-extrabold text-6xl mb-8">
         Terms and Conditions
       </h1>
@@ -119,7 +119,7 @@ const TermsAndConditions = () => {
         <p>
           VizaMentor
           <br />
-          [Insert Address]
+          H no. 468 Sector 39 maloya chandigarh 160025
           <br />
           vizamentor135@gmail.com
           <br />
