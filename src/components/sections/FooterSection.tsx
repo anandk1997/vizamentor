@@ -10,6 +10,10 @@ function FooterSection() {
           <p className="text-4xl  text-black-600 font-bold font-serif">
             VizaMentor
           </p>
+
+          <span className="text-center flex m-auto w-100 justify-center align-middle">
+            A Coaching Institute
+          </span>
           {/* <p className="text-lightGray mt-[1.19rem]">
             Book your trip in minute, get full Control for much longer.
           </p> */}

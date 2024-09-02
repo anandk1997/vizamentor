@@ -22,13 +22,15 @@ function NavBar() {
       <div className=" hidden lg:block animate-in fade-in zoom-in  p-4 ">
         <div className="flex justify-between items-center">
           <div>
-            <Image
-              src="/VisaMentor.png"
-              width={150}
-              height={150}
-              className="mt-[-40px]"
-              alt="logo"
-            />
+            <Link href="/">
+              <Image
+                src="/VisaMentor.png"
+                width={150}
+                height={150}
+                className="mt-[-40px]"
+                alt="logo"
+              />
+            </Link>
           </div>
           <div className="flex gap-[20px] xl:gap-[50px] text-[16px] items-center select-none mt-[-40px]">
             {/* <p
@@ -99,13 +101,15 @@ function NavBar() {
         <div className="flex justify-between mx-[10px]">
           <div className="flex gap-[50px] text-[16px] items-center select-none">
             {!menu && (
-              <Image
-                src="/VisaMentor1.png"
-                width={80}
-                height={80}
-                className="mt-[-10px] overflow-hidden"
-                alt="logo"
-              />
+              <Link href="/">
+                <Image
+                  src="/VisaMentor1.png"
+                  width={80}
+                  height={80}
+                  className="mt-[-10px] overflow-hidden"
+                  alt="logo"
+                />
+              </Link>
             )}
           </div>
 
