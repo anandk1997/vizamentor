@@ -7,6 +7,7 @@ import axios from "axios";
 import { env } from "@/lib/env/intex";
 import Script from "next/script";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 function TopSellingSection() {
   const user = JSON.parse(localStorage.getItem("user")!);
@@ -57,8 +58,10 @@ function TopSellingSection() {
 
           const { data: res } = await axios.post("/api/verify", data);
 
-          if (res.isOk) toast.success(res?.message);
-          else toast.error(res.message);
+          if (res.isOk) {
+            toast.success(res?.message);
+            window.location.reload();
+          } else toast.error(res.message);
         },
 
         prefill: {
@@ -82,6 +85,27 @@ function TopSellingSection() {
       console.error(error);
     }
   };
+
+  const getOrders = async () => {
+    try {
+      const { data } = await axios.get("/api/getOrders", {
+        params: { userId: user?.id },
+      });
+
+      return data?.data;
+    } catch (error) {
+      return [];
+    }
+  };
+
+  const { data: orders } = useQuery({
+    queryKey: ["orders", user?.id],
+    queryFn: getOrders,
+  });
+
+  const purchasedProductIds = new Set(
+    orders?.map((order: any) => order.productId),
+  );
 
   const destinations = [
     {
@@ -181,6 +205,8 @@ function TopSellingSection() {
             imageUrl={destination.imageUrl}
             title={destination.title}
             // duration={destination.duration??""}
+
+            active={purchasedProductIds.has(destination.id.toString())}
             buy={(e: any) => processPayment(e, destination.id.toString())}
             duration={""}
             amount={destination.amount}
@@ -224,9 +250,15 @@ function TopSellingSection() {
         }}
         onClick={(e) => processPayment(e, "3", "9999")}
       >
-        Limited seats{" "}
-        <span className="line-through font-thin mx-3">₹{9999 * 2}</span> ₹ 9999
-        only
+        {purchasedProductIds.has("3") ? (
+          "Current Product"
+        ) : (
+          <>
+            Limited seats
+            <span className="line-through font-thin mx-3">₹{9999 * 2}</span> ₹
+            9999 only
+          </>
+        )}
       </button>
     </section>
   );

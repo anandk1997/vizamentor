@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     const signature = generatedSignature(orderCreationId, razorpayPaymentId);
     if (signature !== razorpaySignature) {
       return NextResponse.json(
-        { message: "payment verification failed", isOk: false },
+        { message: "Payment verification failed", isOk: false },
         { status: 400 },
       );
     }
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     );
 
     return NextResponse.json(
-      { message: "payment verified successfully", isOk: true },
+      { message: "Payment verified successfully", isOk: true },
       { status: 200 },
     );
   } catch (error) {

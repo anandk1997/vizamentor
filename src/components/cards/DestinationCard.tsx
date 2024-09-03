@@ -7,6 +7,7 @@ interface IProps {
   duration: string;
   highlighted: boolean;
   buy: any;
+  active: boolean;
 }
 
 function DestinationCard({
@@ -16,6 +17,7 @@ function DestinationCard({
   duration,
   highlighted,
   buy,
+  active,
 }: IProps) {
   return (
     <div className="flex relative flex-col justify-between  pb-[2.63rem] group">
@@ -59,9 +61,10 @@ function DestinationCard({
             boxShadow:
               "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
           }}
+          disabled={active}
           onClick={buy}
         >
-          Buy Now
+          {active ? "Current Product" : "Buy Now"}
         </button>
       </div>
       {highlighted && (
