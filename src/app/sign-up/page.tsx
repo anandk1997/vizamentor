@@ -15,6 +15,8 @@ export default function SignupForm() {
     address: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const handleChange = (
@@ -26,6 +28,8 @@ export default function SignupForm() {
 
   const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setIsLoading(true);
 
     try {
       await axios.post("/api/signup", formData);
@@ -40,6 +44,8 @@ export default function SignupForm() {
         error?.response?.data?.message ??
           "Something went wrong. Please try again.",
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -142,7 +148,7 @@ export default function SignupForm() {
             type="submit"
             className="mb-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
-            Sign Up
+            {isLoading ? "loading" : "Sign Up"}
           </button>
 
           <Link

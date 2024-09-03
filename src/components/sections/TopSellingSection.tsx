@@ -2,8 +2,87 @@
 
 import React, { useEffect, useState } from "react";
 import DestinationCard from "../cards/DestinationCard";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { env } from "@/lib/env/intex";
+import Script from "next/script";
+import { useRouter } from "next/navigation";
 
 function TopSellingSection() {
+  const user = JSON.parse(localStorage.getItem("user")!);
+
+  const router = useRouter();
+
+  const createOrderId = async (productId: string, amount?: string) => {
+    if (!user) router.push("/sign-in");
+
+    try {
+      const { data: response } = await axios.post("/api/checkout", {
+        amount: amount ?? 3000,
+        userId: user?.id,
+        productId,
+      });
+
+      return response.orderId;
+    } catch (error) {
+      console.error("There was a problem with your fetch operation:", error);
+    }
+  };
+
+  const processPayment = async (
+    e: any,
+    // e: React.FormEvent<HTMLFormElement>,
+    productId: string,
+    amount?: string,
+  ) => {
+    e.preventDefault();
+
+    try {
+      const orderId: string = await createOrderId(productId, amount);
+
+      const options = {
+        key: env.RAZORPAY_ID,
+        amount: parseFloat(amount ?? "3000") * 100,
+        currency: "INR",
+        name: user?.name,
+        description: "description",
+        order_id: orderId,
+        handler: async function (response: any) {
+          const data = {
+            orderCreationId: orderId,
+            razorpayPaymentId: response.razorpay_payment_id,
+            razorpayOrderId: response.razorpay_order_id,
+            razorpaySignature: response.razorpay_signature,
+          };
+
+          const { data: res } = await axios.post("/api/verify", data);
+
+          if (res.isOk) toast.success(res?.message);
+          else toast.error(res.message);
+        },
+
+        prefill: {
+          name: user?.name,
+          email: user?.email,
+        },
+
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+
+      paymentObject.on("payment.failed", (response: any) => {
+        toast.error(response.error.description);
+      });
+
+      paymentObject.open();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const destinations = [
     {
       id: 0,
@@ -84,6 +163,11 @@ function TopSellingSection() {
 
   return (
     <section>
+      <Script
+        id="razorpay-checkout-js"
+        src="https://checkout.razorpay.com/v1/checkout.js"
+      />
+
       <p className="text-lightGray text-[1.125rem] font-[600] text-center">
         Top Selling
       </p>
@@ -97,6 +181,7 @@ function TopSellingSection() {
             imageUrl={destination.imageUrl}
             title={destination.title}
             // duration={destination.duration??""}
+            buy={(e: any) => processPayment(e, destination.id.toString())}
             duration={""}
             amount={destination.amount}
             highlighted={destination.highlighted}
@@ -137,6 +222,7 @@ function TopSellingSection() {
           boxShadow:
             "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
         }}
+        onClick={(e) => processPayment(e, "3", "9999")}
       >
         Limited seats{" "}
         <span className="line-through font-thin mx-3">₹{9999 * 2}</span> ₹ 9999

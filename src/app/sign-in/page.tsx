@@ -12,6 +12,8 @@ export default function LoginForm() {
     password: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,8 +24,12 @@ export default function LoginForm() {
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setIsLoading(true);
+
     try {
-      await axios.post("/api/signin", formData);
+      const { data } = await axios.post("/api/signin", formData);
+
+      localStorage.setItem("user", JSON.stringify(data?.data));
 
       toast.success("Login successful! Redirecting...");
 
@@ -35,6 +41,8 @@ export default function LoginForm() {
         error?.response?.data?.message ??
           "Something went wrong. Please try again.",
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -78,9 +86,10 @@ export default function LoginForm() {
         </div>
         <button
           type="submit"
+          disabled={isLoading}
           className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
-          Login
+          {isLoading ? "loading" : "Login"}
         </button>
 
         <Link

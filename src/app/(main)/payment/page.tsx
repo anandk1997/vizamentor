@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Script from "next/script";
 import { Button } from "@/components/ui/button";
@@ -16,16 +17,14 @@ function Payment() {
 
   const createOrderId = async () => {
     try {
+      const user = JSON.parse(localStorage.getItem("user")!);
+
       const { data: response } = await axios.post("/api/checkout", {
-        amount: parseFloat(amount) * 100,
+        amount,
+        userId: user?.id,
       });
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      return data.orderId;
+      return response.orderId;
     } catch (error) {
       console.error("There was a problem with your fetch operation:", error);
     }

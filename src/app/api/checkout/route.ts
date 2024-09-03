@@ -1,3 +1,5 @@
+import { dbConnect } from "@/database/database";
+import Order from "@/database/model/Order";
 import { env } from "@/lib/env/intex";
 import { customErrorResponse } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
@@ -10,21 +12,34 @@ const razorpay = new Razorpay({
 
 export async function POST(request: NextRequest) {
   try {
-    const { amount, currency } = (await request.json()) as {
+    const { amount, userId, productId } = (await request.json()) as {
       amount: string;
-      currency: string;
+      userId: string;
+      productId: string;
     };
 
-    var options = {
-      amount: amount,
-      currency: currency,
+    const options = {
+      amount: parseFloat(amount) * 100,
+      currency: "INR",
       receipt: "rcp1",
     };
     const order = await razorpay.orders.create(options);
 
+    await dbConnect();
+
+    await Order.create({
+      orderId: order.id,
+      amount: amount,
+      currency: "INR",
+      userId,
+      productId,
+      paymentStatus: "pending",
+    });
+
     return NextResponse.json({ orderId: order.id }, { status: 200 });
-    // return customErrorResponse("Internal Server Error", 500);
   } catch (error) {
+    console.error("error", error);
+
     return customErrorResponse("Internal Server Error", 500);
   }
 }

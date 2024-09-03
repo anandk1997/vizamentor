@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { env } from "@/lib/env/intex";
 import { customErrorResponse } from "@/lib/utils";
+import { dbConnect } from "@/database/database";
+import Order from "@/database/model/Order";
 
 const generatedSignature = (
   razorpayOrderId: string,
@@ -21,20 +23,31 @@ const generatedSignature = (
 };
 
 export async function POST(request: NextRequest) {
-  const { orderCreationId, razorpayPaymentId, razorpaySignature } =
-    await request.json();
+  try {
+    const { orderCreationId, razorpayPaymentId, razorpaySignature } =
+      await request.json();
 
-  const signature = generatedSignature(orderCreationId, razorpayPaymentId);
-  if (signature !== razorpaySignature) {
-    return NextResponse.json(
-      { message: "payment verification failed", isOk: false },
-      { status: 400 },
+    const signature = generatedSignature(orderCreationId, razorpayPaymentId);
+    if (signature !== razorpaySignature) {
+      return NextResponse.json(
+        { message: "payment verification failed", isOk: false },
+        { status: 400 },
+      );
+    }
+
+    await dbConnect();
+
+    await Order.updateOne(
+      { orderId: orderCreationId },
+      { paymentStatus: "completed" },
+      { upsert: true }, // Create a new record if it doesn't exist
     );
-  }
-  return NextResponse.json(
-    { message: "payment verified successfully", isOk: true },
-    { status: 200 },
-  );
 
-  // return customErrorResponse("Internal Server Error", 500);
+    return NextResponse.json(
+      { message: "payment verified successfully", isOk: true },
+      { status: 200 },
+    );
+  } catch (error) {
+    return customErrorResponse("Internal Server Error", 500);
+  }
 }

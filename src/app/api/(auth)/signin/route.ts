@@ -6,7 +6,7 @@ import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { env } from "@/lib/env/intex";
 
-export async function POST(request: Request) {
+export async function POST(request: Request, res: Response) {
   try {
     await dbConnect();
 
@@ -29,14 +29,28 @@ export async function POST(request: Request) {
       { expiresIn: "24h" },
     );
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         message: "Login successful",
-        token,
-        data: user,
+        data: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          address: user.address,
+          token,
+        },
       },
       { status: 200 },
     );
+
+    response.cookies.set("authToken", token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60,
+      // path: "/",
+    });
+
+    return response;
   } catch (error) {
     console.error("error...", error);
 
