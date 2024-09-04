@@ -157,6 +157,13 @@ export default function SignupForm() {
           >
             Back to Login
           </Link>
+
+          <Link
+            href={"/"}
+            className="mt-7 text-center flex m-auto justify-center"
+          >
+            Home
+          </Link>
         </form>
       </div>
     </div>

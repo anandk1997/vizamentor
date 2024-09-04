@@ -1,14 +1,19 @@
 "use client";
 
 import axios from "axios";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleForgotPassword = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setIsLoading(true);
 
     try {
       await axios.post("/api/forgot", { email });
@@ -19,6 +24,8 @@ export default function ForgotPasswordForm() {
         error?.response?.data?.message ??
           "Something went wrong. Please try again.",
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -45,10 +52,25 @@ export default function ForgotPasswordForm() {
 
         <button
           type="submit"
+          disabled={isLoading}
           className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
-          Send Reset Link
+          {isLoading ? "loading" : "Send Reset Link"}
         </button>
+
+        <Link
+          href={"/sign-in"}
+          className="mt-7 text-center flex m-auto justify-center"
+        >
+          Back to Login
+        </Link>
+
+        <Link
+          href={"/"}
+          className="mt-7 text-center flex m-auto justify-center"
+        >
+          Home
+        </Link>
       </form>
     </div>
   );

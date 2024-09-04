@@ -93,10 +93,24 @@ export default function LoginForm() {
         </button>
 
         <Link
+          href={"/forgot"}
+          className="mt-7 text-center flex m-auto justify-center"
+        >
+          Forgot Password
+        </Link>
+
+        <Link
           href={"/sign-up"}
           className="mt-7 text-center flex m-auto justify-center"
         >
           Back to Signup
+        </Link>
+
+        <Link
+          href={"/"}
+          className="mt-7 text-center flex m-auto justify-center"
+        >
+          Home
         </Link>
       </form>
     </div>
