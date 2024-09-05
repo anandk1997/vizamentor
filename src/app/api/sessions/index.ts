@@ -37,6 +37,8 @@ export const checkAuth = async (request: Request) => {
   if (!res) {
     return customErrorResponse("Invalid or expired token", 401);
   }
+
+  return { success: true, data: res };
 };
 
 export const logout = async () => {

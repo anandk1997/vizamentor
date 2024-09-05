@@ -6,7 +6,13 @@ import { checkAuth } from "../sessions";
 
 export async function GET(request: Request) {
   try {
-    await checkAuth(request);
+    const tokenValidation: any = await checkAuth(request);
+
+    if (!tokenValidation.success) return tokenValidation;
+
+    if (tokenValidation?.data?.user?.role !== "ADMIN") {
+      return customErrorResponse("You are not authorized", 403);
+    }
 
     await dbConnect();
 
