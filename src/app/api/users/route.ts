@@ -2,9 +2,18 @@ import { dbConnect } from "@/database/database";
 import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { NextResponse } from "next/server";
+import { checkAuth } from "../sessions";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const tokenValidation: any = await checkAuth(request);
+
+    if (!tokenValidation.success) return tokenValidation;
+
+    if (tokenValidation?.data?.user?.role !== "ADMIN") {
+      return customErrorResponse("You are not authorized", 403);
+    }
+
     await dbConnect();
 
     const orders = await User.aggregate([

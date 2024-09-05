@@ -5,6 +5,7 @@ import { dbConnect } from "@/database/database";
 import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { env } from "@/lib/env/intex";
+import { createSession } from "../../sessions";
 
 export async function POST(request: Request, res: Response) {
   try {
@@ -29,6 +30,8 @@ export async function POST(request: Request, res: Response) {
       { expiresIn: "24h" },
     );
 
+    await createSession(user);
+
     const response = NextResponse.json(
       {
         message: "Login successful",
@@ -43,12 +46,6 @@ export async function POST(request: Request, res: Response) {
       },
       { status: 200 },
     );
-
-    response.cookies.set("authToken", token, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60,
-      // path: "/",
-    });
 
     return response;
   } catch (error) {
