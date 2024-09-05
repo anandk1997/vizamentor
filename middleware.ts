@@ -6,7 +6,7 @@
 // //   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 // // };
 
-import { updateSession } from "@/app/api/sessions";
+import { updateSession } from "@/app/api/(auth)/sessions";
 import { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {

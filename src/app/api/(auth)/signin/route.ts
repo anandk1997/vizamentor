@@ -5,7 +5,7 @@ import { dbConnect } from "@/database/database";
 import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { env } from "@/lib/env/intex";
-import { createSession } from "../../sessions";
+import { createSession } from "../sessions";
 
 export async function POST(request: Request, res: Response) {
   try {
