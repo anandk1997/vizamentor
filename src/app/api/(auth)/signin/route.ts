@@ -27,7 +27,7 @@ export async function POST(request: Request, res: Response) {
     const token = jwt.sign(
       { id: user._id, email: user.email },
       env.JWT_SECRET!,
-      { expiresIn: "24h" }
+      { expiresIn: "24h" },
     );
 
     await createSession(user);
@@ -44,7 +44,7 @@ export async function POST(request: Request, res: Response) {
           token,
         },
       },
-      { status: 200 }
+      { status: 200 },
     );
 
     return response;

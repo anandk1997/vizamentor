@@ -2,6 +2,7 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { env } from "@/lib/env/intex";
+import { customErrorResponse } from "@/lib/utils";
 
 const key = new TextEncoder().encode(env.JWT_SECRET);
 
@@ -14,11 +15,29 @@ export async function encrypt(payload: any) {
 }
 
 export async function decrypt(input: string): Promise<any> {
-  const { payload } = await jwtVerify(input, key, {
-    algorithms: ["HS256"],
-  });
-  return payload;
+  try {
+    const { payload } = await jwtVerify(input, key, {
+      algorithms: ["HS256"],
+    });
+    return payload;
+  } catch (error) {
+    return "Invalid Token";
+  }
 }
+
+export const checkAuth = async (request: Request) => {
+  const token = request.headers.get("Authorization")?.split(" ")[1];
+
+  if (!token) {
+    return customErrorResponse("Authorization token is missing", 401);
+  }
+
+  const res = await decrypt(token);
+
+  if (!res) {
+    return customErrorResponse("Invalid or expired token", 401);
+  }
+};
 
 export const logout = async () => {
   cookies().set("session", "", { expires: new Date(0) });

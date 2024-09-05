@@ -2,9 +2,12 @@ import { dbConnect } from "@/database/database";
 import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { NextResponse } from "next/server";
+import { checkAuth } from "../sessions";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    await checkAuth(request);
+
     await dbConnect();
 
     const orders = await User.aggregate([
