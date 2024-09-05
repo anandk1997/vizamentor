@@ -4,42 +4,12 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 
-export async function GET() {
-  await dbConnect();
-
-  const users = await User.find();
-
-  return NextResponse.json({ message: "success", data: users });
-}
-
-const schema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  phone: z.string(),
-  address: z.string(),
-  role: z.enum(["USER", "ADMIN"]),
-  password: z.string().min(6),
-});
-
 export async function POST(req: Request) {
   try {
-    const requestBody = await req.json();
+    const { name, email, phone, address, role, password } = await req.json();
 
-    const parsed = schema.safeParse(requestBody);
-
-    if (!parsed.success) {
-      return NextResponse.json(
-        { message: `Validation Error: ${parsed.error.message}` },
-        { status: 400 },
-      );
-    }
-
-    const { name, email, phone, address, role, password } = parsed.data;
-
-    // Connect to the database
     await dbConnect();
 
-    // Check for existing user with the same email or phone
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
