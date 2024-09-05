@@ -5,6 +5,7 @@ import { dbConnect } from "@/database/database";
 import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { env } from "@/lib/env/intex";
+import { createSession } from "../../sessions";
 
 export async function POST(request: Request, res: Response) {
   try {
@@ -26,8 +27,10 @@ export async function POST(request: Request, res: Response) {
     const token = jwt.sign(
       { id: user._id, email: user.email },
       env.JWT_SECRET!,
-      { expiresIn: "24h" },
+      { expiresIn: "24h" }
     );
+
+    await createSession(user);
 
     const response = NextResponse.json(
       {
@@ -41,14 +44,8 @@ export async function POST(request: Request, res: Response) {
           token,
         },
       },
-      { status: 200 },
+      { status: 200 }
     );
-
-    response.cookies.set("authToken", token, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60,
-      // path: "/",
-    });
 
     return response;
   } catch (error) {
