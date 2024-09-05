@@ -8,6 +8,7 @@ import { env } from "@/lib/env/intex";
 import Script from "next/script";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { useGetSession } from "@/hooks/useGetSession";
 
 function TopSellingSection() {
   const user = JSON.parse(localStorage.getItem("user")!);
@@ -86,9 +87,19 @@ function TopSellingSection() {
     }
   };
 
+  const session = useGetSession();
+
+  const token = session?.session;
+
   const getOrders = async () => {
+    if (!token) return;
+
     try {
       const { data } = await axios.get("/api/getOrders", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+
         params: { userId: user?.id },
       });
 
@@ -99,7 +110,7 @@ function TopSellingSection() {
   };
 
   const { data: orders } = useQuery({
-    queryKey: ["orders", user?.id],
+    queryKey: ["orders", user?.id, token],
     queryFn: getOrders,
   });
 

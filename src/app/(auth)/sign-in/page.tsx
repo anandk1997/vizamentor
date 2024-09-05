@@ -33,7 +33,7 @@ export default function LoginForm() {
 
       toast.success("Login successful! Redirecting...");
 
-      setTimeout(() => router.push("/"), 2000);
+      setTimeout(() => router.push("/"), 500);
     } catch (error: any) {
       console.error("signup error", error);
 

@@ -6,15 +6,39 @@ import Link from "next/link";
 import MainButton from "./MainButton";
 import Image from "next/image";
 import { UserButton, useClerk } from "@clerk/nextjs";
+import { useGetSession } from "@/hooks/useGetSession";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { Button } from "../ui/button";
+import { useGetToken } from "@/hooks/useGetToken";
+import { useQueryClient } from "@tanstack/react-query";
 
 function NavBar() {
   const [menu, setMenu] = useState(false);
 
-  const toggleMenu = () => {
-    setMenu(!menu);
-  };
+  const queryClient = useQueryClient();
 
-  const { signOut, session } = useClerk();
+  const router = useRouter();
+  const session = useGetSession();
+  const token = session?.session;
+  const bToken = useGetToken();
+
+  const toggleMenu = () => setMenu(!menu);
+
+  const { signOut, session: sess } = useClerk();
+
+  const logout = async () => {
+    try {
+      const { data } = await axios.get("/api/logout", bToken);
+
+      queryClient.refetchQueries({ queryKey: ["session"] });
+      toast.success(data?.message);
+      router.push("/");
+    } catch (error) {
+      console.error("error logout", error);
+    }
+  };
 
   return (
     <div className="md:sticky md:top-0   md:shadow-none z-20 h-11">
@@ -54,21 +78,33 @@ function NavBar() {
               Bookings
             </p> */}
 
-            {!session?.id ? (
+            {!sess?.id ? (
               <>
-                <Link
-                  href="/sign-in"
-                  className="hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2 "
-                >
-                  Login
-                </Link>
+                {token ? (
+                  <Button
+                    className="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
+                    onClick={logout}
+                  >
+                    Logout
+                  </Button>
+                ) : (
+                  <>
+                    <Link
+                      href="/sign-in"
+                      className="hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2 "
+                    >
+                      Login
+                    </Link>
 
-                <Link href="/sign-up">
-                  <MainButton
-                    text="Sign up"
-                    classes="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
-                  />
-                </Link>
+                    <Link href="/sign-up">
+                      <MainButton
+                        text="Sign up"
+                        // text="Sign up"
+                        classes="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
+                      />
+                    </Link>
+                  </>
+                )}
               </>
             ) : (
               <>
@@ -121,21 +157,32 @@ function NavBar() {
               />
             ) : (
               <>
-                {!session?.id ? (
+                {!sess?.id ? (
                   <>
-                    <Link
-                      href="/sign-in"
-                      className="hover:text-white text-navText font-[600] cursor-pointer flex items-center gap-2 mt-[-20px]"
-                    >
-                      Login
-                    </Link>
+                    {token ? (
+                      <Button
+                        className="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
+                        onClick={logout}
+                      >
+                        Logout
+                      </Button>
+                    ) : (
+                      <>
+                        <Link
+                          href="/sign-in"
+                          className="hover:text-white text-navText font-[600] cursor-pointer flex items-center gap-2 mt-[-20px]"
+                        >
+                          Login
+                        </Link>
 
-                    <Link href="/sign-up" className="mt-[-20px]">
-                      <MainButton
-                        text="Sign up"
-                        classes="bg-secondary hover:bg-secondary text-navText font-[600] shadow-none rounded-normal border border-none hover:text-white"
-                      />
-                    </Link>
+                        <Link href="/sign-up" className="mt-[-20px]">
+                          <MainButton
+                            text="Sign up"
+                            classes="bg-secondary hover:bg-secondary text-navText font-[600] shadow-none rounded-normal border border-none hover:text-white"
+                          />
+                        </Link>
+                      </>
+                    )}
                   </>
                 ) : (
                   <>

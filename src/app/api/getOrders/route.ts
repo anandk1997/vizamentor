@@ -2,9 +2,14 @@ import { dbConnect } from "@/database/database";
 import Order from "@/database/model/Order";
 import { customErrorResponse } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
+import { checkAuth } from "../(auth)/sessions";
 
 export async function GET(request: NextRequest) {
   try {
+    const tokenValidation: any = await checkAuth(request);
+
+    if (!tokenValidation.success) return tokenValidation;
+
     const url = new URL(request.url);
     const userId = url.searchParams.get("userId");
 

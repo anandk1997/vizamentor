@@ -2,7 +2,7 @@ import { dbConnect } from "@/database/database";
 import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import { checkAuth } from "../sessions";
+import { checkAuth } from "../(auth)/sessions";
 
 export async function GET(request: Request) {
   try {
