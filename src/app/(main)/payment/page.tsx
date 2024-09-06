@@ -17,11 +17,9 @@ function Payment() {
 
   const createOrderId = async () => {
     try {
-      const user = JSON.parse(localStorage.getItem("user")!);
-
       const { data: response } = await axios.post("/api/checkout", {
         amount,
-        userId: user?.id,
+        // userId: user?.id,
       });
 
       return response.orderId;

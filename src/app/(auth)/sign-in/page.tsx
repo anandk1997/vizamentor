@@ -27,12 +27,9 @@ export default function LoginForm() {
     setIsLoading(true);
 
     try {
-      const { data } = await axios.post("/api/signin", formData);
-
-      localStorage.setItem("user", JSON.stringify(data?.data));
+      await axios.post("/api/signin", formData);
 
       toast.success("Login successful! Redirecting...");
-
       setTimeout(() => router.push("/"), 500);
     } catch (error: any) {
       console.error("signup error", error);

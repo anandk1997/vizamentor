@@ -11,17 +11,19 @@ import { useQuery } from "@tanstack/react-query";
 import { useGetSession } from "@/hooks/useGetSession";
 
 function TopSellingSection() {
-  const user = JSON.parse(localStorage.getItem("user")!);
-
   const router = useRouter();
+  const session = useGetSession();
+
+  const token = session?.session;
+  const user = session?.user;
 
   const createOrderId = async (productId: string, amount?: string) => {
-    if (!user) router.push("/sign-in");
+    if (!token) return router.push("/sign-in");
 
     try {
       const { data: response } = await axios.post("/api/checkout", {
         amount: amount ?? 3000,
-        userId: user?.id,
+        userId: user?._id,
         productId,
       });
 
@@ -87,10 +89,6 @@ function TopSellingSection() {
     }
   };
 
-  const session = useGetSession();
-
-  const token = session?.session;
-
   const getOrders = async () => {
     if (!token) return;
 
@@ -100,7 +98,7 @@ function TopSellingSection() {
           Authorization: `Bearer ${token}`,
         },
 
-        params: { userId: user?.id },
+        params: { userId: user?._id },
       });
 
       return data?.data;
@@ -110,7 +108,7 @@ function TopSellingSection() {
   };
 
   const { data: orders } = useQuery({
-    queryKey: ["orders", user?.id, token],
+    queryKey: ["orders", user?._id, token],
     queryFn: getOrders,
   });
 
