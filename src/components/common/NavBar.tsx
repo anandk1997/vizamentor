@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { Button } from "../ui/button";
 import { useGetToken } from "@/hooks/useGetToken";
 import { useQueryClient } from "@tanstack/react-query";
+import { CgProfile } from "react-icons/cg";
 
 function NavBar() {
   const [menu, setMenu] = useState(false);
@@ -56,7 +57,7 @@ function NavBar() {
               />
             </Link>
           </div>
-          <div className="flex gap-[20px] xl:gap-[50px] text-[16px] items-center select-none mt-[-40px]">
+          <div className="flex gap-[20px] text-[16px] items-center select-none mt-[-40px]">
             {/* <p
               className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
             >
@@ -81,12 +82,18 @@ function NavBar() {
             {!sess?.id ? (
               <>
                 {token ? (
-                  <Button
-                    className="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
-                    onClick={logout}
-                  >
-                    Logout
-                  </Button>
+                  <>
+                    <Link href={"/updateProfile"}>
+                      <CgProfile size={30} />
+                    </Link>
+
+                    <Button
+                      className="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
+                      onClick={logout}
+                    >
+                      Logout
+                    </Button>
+                  </>
                 ) : (
                   <>
                     <Link
@@ -149,7 +156,7 @@ function NavBar() {
             )}
           </div>
 
-          <div className="flex justify-end items-center gap-[40px]">
+          <div className="flex justify-end items-center gap-[20px]">
             {menu ? (
               <X
                 className="cursor-pointer animate-in fade-in zoom-in text-black"
@@ -160,12 +167,18 @@ function NavBar() {
                 {!sess?.id ? (
                   <>
                     {token ? (
-                      <Button
-                        className="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
-                        onClick={logout}
-                      >
-                        Logout
-                      </Button>
+                      <>
+                        <Link href={"/updateProfile"}>
+                          <CgProfile size={30} />
+                        </Link>
+
+                        <Button
+                          className="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
+                          onClick={logout}
+                        >
+                          Logout
+                        </Button>
+                      </>
                     ) : (
                       <>
                         <Link
