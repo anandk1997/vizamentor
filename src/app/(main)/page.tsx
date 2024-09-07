@@ -34,6 +34,10 @@ export default function Home() {
         </div>
       )}
 
+      <TopSellingSection />
+
+      <VizMentor />
+
       <div className="absolute top-0 right-0 -z-10">
         <img src="/images/blob-shape.png" alt="blob background shape" />
       </div>
@@ -46,10 +50,6 @@ export default function Home() {
           <img src="/images/plus-group.png" alt="blob background shape" />
         </div>
       </div>
-
-      <TopSellingSection />
-
-      <VizMentor />
 
       <Features />
       {/* <BookNextTripSection /> */}
