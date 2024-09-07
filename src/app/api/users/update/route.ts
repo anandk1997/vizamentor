@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
 import User from "@/database/model/User";
 import { dbConnect } from "@/database/database";
 import { customErrorResponse } from "@/lib/utils";
@@ -12,7 +13,8 @@ export async function PATCH(request: Request) {
 
     await dbConnect();
 
-    const { id, email, phone, address } = await request.json();
+    const { id, email, phone, address, oldPassword, newPassword } =
+      await request.json();
 
     if (!id) {
       return customErrorResponse("User ID is required", 400);
@@ -34,6 +36,25 @@ export async function PATCH(request: Request) {
       }
 
       updates.email = email;
+    }
+
+    if (newPassword) {
+      if (!oldPassword) {
+        return customErrorResponse(
+          "Old password is required for changing password",
+          400,
+        );
+      }
+
+      const isMatch = await bcrypt.compare(oldPassword, user.password);
+
+      if (!isMatch) {
+        return customErrorResponse("Old password is incorrect", 400);
+      }
+
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      updates.password = hashedPassword;
     }
 
     if (phone) {

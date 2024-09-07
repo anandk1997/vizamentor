@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { useGetSession } from "@/hooks/useGetSession";
 import { useRouter } from "next/navigation";
+import { UpdatePassword } from "./updatePassword";
 
 export function UpdateProfile() {
   const [formData, setFormData] = useState({
@@ -70,8 +71,8 @@ export function UpdateProfile() {
   };
 
   return (
-    <div className="flex justify-center align-middle h-[100vh] w-100">
-      <div className="md:w-[40%] h-full mx-auto mt-10 p-8 border border-gray-300 rounded-lg shadow-lg">
+    <div className="flex flex-col md:flex-row justify-center align-middle h-[100vh] w-100">
+      <div className="md:w-[48%] h-full mx-auto mt-10 p-8 border border-gray-300 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold text-center mb-6">Update Profile</h1>
         <form onSubmit={handleUpdate} className="space-y-4">
           <div>
@@ -160,6 +161,12 @@ export function UpdateProfile() {
             Home
           </Link>
         </form>
+      </div>
+
+      <div className="md:w-[48%] h-full mx-auto mt-10 p-8 border border-gray-300 rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold text-center mb-6">Update Password</h1>
+
+        <UpdatePassword />
       </div>
     </div>
   );
