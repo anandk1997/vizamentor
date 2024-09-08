@@ -3,7 +3,7 @@
 import { useGetSession } from "@/hooks/useGetSession";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import { redirect } from "next/navigation";
 
 const Users = () => {
   const session = useGetSession();
@@ -31,7 +31,9 @@ const Users = () => {
     queryFn: getUsers,
   });
 
-  return <></>;
+  if (session?.user?.role !== "ADMIN") redirect("/");
+
+  return JSON.stringify(userList);
 };
 
 export default Users;

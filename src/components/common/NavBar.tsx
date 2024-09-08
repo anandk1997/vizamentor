@@ -14,6 +14,7 @@ import { Button } from "../ui/button";
 import { useGetToken } from "@/hooks/useGetToken";
 import { useQueryClient } from "@tanstack/react-query";
 import { CgProfile } from "react-icons/cg";
+import { FaUserFriends } from "react-icons/fa";
 
 function NavBar() {
   const [menu, setMenu] = useState(false);
@@ -83,6 +84,12 @@ function NavBar() {
               <>
                 {token ? (
                   <>
+                    {session?.user?.role === "ADMIN" && (
+                      <Link href={"/users"}>
+                        <FaUserFriends size={30} />
+                      </Link>
+                    )}
+
                     <Link href={"/updateProfile"}>
                       <CgProfile size={30} />
                     </Link>
@@ -168,6 +175,12 @@ function NavBar() {
                   <>
                     {token ? (
                       <>
+                        {session?.user?.role === "ADMIN" && (
+                          <Link href={"/users"}>
+                            <FaUserFriends size={30} />
+                          </Link>
+                        )}
+
                         <Link href={"/updateProfile"}>
                           <CgProfile size={30} />
                         </Link>

@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useGetSession } from "@/hooks/useGetSession";
 
 export const UpdatePassword = () => {
-  const [formData, setFormData] = useState({
+  const initialState = {
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(initialState);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,6 +26,10 @@ export const UpdatePassword = () => {
 
   const handleUpdate = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (formData.newPassword !== formData.confirmPassword) {
+      return toast.error("New and confirm passwords are not equal");
+    }
 
     setIsLoading(true);
 
@@ -42,6 +48,8 @@ export const UpdatePassword = () => {
       );
 
       toast.success("Password updated successfully");
+
+      setFormData(initialState);
     } catch (error: any) {
       console.error("Update User error", error);
 

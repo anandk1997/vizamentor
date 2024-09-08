@@ -5,7 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { useGetSession } from "@/hooks/useGetSession";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { UpdatePassword } from "./updatePassword";
 
 export function UpdateProfile() {
@@ -18,11 +18,8 @@ export function UpdateProfile() {
   const [isLoading, setIsLoading] = useState(false);
 
   const session = useGetSession();
-  const { push } = useRouter();
 
   useEffect(() => {
-    if (!session?.session) return push("/");
-
     setFormData((prev) => ({
       ...prev,
       email: session?.user?.email,
@@ -69,6 +66,8 @@ export function UpdateProfile() {
       setIsLoading(false);
     }
   };
+
+  if (!session?.session) return redirect("/");
 
   return (
     <div className="flex flex-col md:flex-row justify-center align-middle h-[100vh] w-100">
