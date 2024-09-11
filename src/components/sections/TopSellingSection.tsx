@@ -259,6 +259,7 @@ function TopSellingSection() {
             "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
         }}
         onClick={(e) => processPayment(e, "3", "9999")}
+        disabled={loadingItemId === "3" || purchasedProductIds.has("3")}
       >
         {loadingItemId === "3" ? (
           "Loading"
