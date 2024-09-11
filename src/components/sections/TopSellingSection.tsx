@@ -17,6 +17,8 @@ function TopSellingSection() {
   const token = session?.session;
   const user = session?.user;
 
+  const [loadingItemId, setLoadingItemId] = useState<string | null>(null);
+
   const createOrderId = async (productId: string, amount?: string) => {
     if (!token) return router.push("/sign-in");
 
@@ -33,13 +35,10 @@ function TopSellingSection() {
     }
   };
 
-  const processPayment = async (
-    e: any,
-    // e: React.FormEvent<HTMLFormElement>,
-    productId: string,
-    amount?: string,
-  ) => {
+  const processPayment = async (e: any, productId: string, amount?: string) => {
     e.preventDefault();
+
+    setLoadingItemId(productId);
 
     try {
       const orderId: string = await createOrderId(productId, amount);
@@ -86,6 +85,8 @@ function TopSellingSection() {
       paymentObject.open();
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoadingItemId(null);
     }
   };
 
@@ -214,7 +215,7 @@ function TopSellingSection() {
             imageUrl={destination.imageUrl}
             title={destination.title}
             // duration={destination.duration??""}
-
+            isLoading={loadingItemId === destination.id.toString()}
             active={purchasedProductIds.has(destination.id.toString())}
             buy={(e: any) => processPayment(e, destination.id.toString())}
             duration={""}
@@ -259,7 +260,9 @@ function TopSellingSection() {
         }}
         onClick={(e) => processPayment(e, "3", "9999")}
       >
-        {purchasedProductIds.has("3") ? (
+        {loadingItemId === "3" ? (
+          "Loading"
+        ) : purchasedProductIds.has("3") ? (
           "Current Product"
         ) : (
           <>
