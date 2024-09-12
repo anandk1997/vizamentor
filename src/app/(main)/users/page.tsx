@@ -30,7 +30,7 @@ const Users = () => {
     }
   };
 
-  const { data: userList } = useQuery({
+  const { data: userList, isPending } = useQuery({
     queryKey: ["users", token],
     queryFn: getUsers,
   });
@@ -204,7 +204,7 @@ const Users = () => {
           ) : (
             <tr>
               <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
-                No users found.
+                {isPending ? "Fetching Orders..." : "No users found."}
               </td>
             </tr>
           )}
