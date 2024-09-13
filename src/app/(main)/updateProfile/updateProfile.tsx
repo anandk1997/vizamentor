@@ -27,9 +27,9 @@ export function UpdateProfile() {
 
     setFormData((prev) => ({
       ...prev,
-      email: session?.user?.email,
-      phone: session?.user?.phone,
-      address: session?.user?.address,
+      email: session?.email,
+      phone: session?.phone,
+      address: session?.address,
     }));
   }, [session?.session]);
 
@@ -50,7 +50,7 @@ export function UpdateProfile() {
         "/api/users/update",
         {
           ...formData,
-          id: session?.user?._id,
+          id: session?.id,
         },
 
         bToken,
@@ -86,7 +86,7 @@ export function UpdateProfile() {
               type="text"
               id="name"
               name="name"
-              value={session?.user?.name ?? ""}
+              value={session?.name ?? ""}
               onChange={handleChange}
               disabled
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none bg-slate-300 focus:ring-indigo-500 focus:border-indigo-500"

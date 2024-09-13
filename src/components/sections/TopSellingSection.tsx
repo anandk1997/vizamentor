@@ -16,7 +16,6 @@ function TopSellingSection() {
   const { data: session } = useGetSession();
 
   const token = session?.session;
-  const user = session?.user;
   const bToken = useGetToken();
 
   const [loadingItemId, setLoadingItemId] = useState<string | null>(null);
@@ -27,7 +26,7 @@ function TopSellingSection() {
     try {
       const { data: response } = await axios.post("/api/checkout", {
         amount: amount ?? 3000,
-        userId: user?._id,
+        userId: session?.id,
         productId,
       });
 
@@ -49,7 +48,7 @@ function TopSellingSection() {
         key: env.RAZORPAY_ID,
         amount: parseFloat(amount ?? "3000") * 100,
         currency: "INR",
-        name: user?.name,
+        name: session?.name,
         description: "description",
         order_id: orderId,
         handler: async function (response: any) {
@@ -69,8 +68,8 @@ function TopSellingSection() {
         },
 
         prefill: {
-          name: user?.name,
-          email: user?.email,
+          name: session?.name,
+          email: session?.email,
         },
 
         theme: {
@@ -99,7 +98,7 @@ function TopSellingSection() {
       const { data } = await axios.get("/api/getOrders", {
         ...bToken,
 
-        params: { userId: user?._id },
+        params: { userId: session?.id },
       });
 
       return data?.data;
@@ -109,7 +108,7 @@ function TopSellingSection() {
   };
 
   const { data: orders } = useQuery({
-    queryKey: ["orders", user?._id, token],
+    queryKey: ["orders", session?.id, token],
     queryFn: getOrders,
   });
 

@@ -84,7 +84,7 @@ function NavBar() {
               <>
                 {token ? (
                   <>
-                    {session?.user?.role === "ADMIN" && (
+                    {session?.role === "ADMIN" && (
                       <Link href={"/users"}>
                         <FaUserFriends size={30} />
                       </Link>
@@ -175,7 +175,7 @@ function NavBar() {
                   <>
                     {token ? (
                       <>
-                        {session?.user?.role === "ADMIN" && (
+                        {session?.role === "ADMIN" && (
                           <Link href={"/users"}>
                             <FaUserFriends size={30} />
                           </Link>

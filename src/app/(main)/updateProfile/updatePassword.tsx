@@ -41,7 +41,7 @@ export const UpdatePassword = () => {
         "/api/users/update",
         {
           ...formData,
-          id: session?.user?._id,
+          id: session?.id,
         },
 
         bToken,

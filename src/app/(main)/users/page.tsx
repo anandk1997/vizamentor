@@ -53,7 +53,7 @@ const Users = () => {
     }
   }, [userList]);
 
-  if (!sessionLoading && session?.user?.role !== "ADMIN") redirect("/");
+  if (!sessionLoading && session?.role !== "ADMIN") redirect("/");
   return (
     <div className="w-100 overflow-auto">
       <h1 className="text-2xl font-bold text-center mb-6">Orders</h1>
