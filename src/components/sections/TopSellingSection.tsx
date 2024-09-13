@@ -13,7 +13,7 @@ import { useGetToken } from "@/hooks/useGetToken";
 
 function TopSellingSection() {
   const router = useRouter();
-  const session = useGetSession();
+  const { data: session } = useGetSession();
 
   const token = session?.session;
   const user = session?.user;

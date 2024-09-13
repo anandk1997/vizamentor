@@ -16,7 +16,8 @@ export const UpdatePassword = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const session = useGetSession();
+  const { data: session } = useGetSession();
+
   const bToken = useGetToken();
 
   const handleChange = (

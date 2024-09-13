@@ -18,7 +18,8 @@ export function UpdateProfile() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const session = useGetSession();
+  const { data: session, isPending } = useGetSession();
+
   const bToken = useGetToken();
 
   useEffect(() => {
@@ -68,7 +69,7 @@ export function UpdateProfile() {
     }
   };
 
-  if (!session.isPending && !session?.session) redirect("/");
+  if (!isPending && !session?.session) redirect("/");
   return (
     <div className="flex flex-col md:flex-row justify-center align-middle h-[100vh] w-100">
       <div className="md:w-[48%] h-full mx-auto mt-10 p-8 border border-gray-300 rounded-lg shadow-lg">

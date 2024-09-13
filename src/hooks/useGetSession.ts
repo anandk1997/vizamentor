@@ -12,10 +12,8 @@ export const useGetSession = () => {
     }
   };
 
-  const { data: session, ...rest } = useQuery({
+  return useQuery({
     queryKey: ["session"],
     queryFn: getSession,
   });
-
-  return { ...session, ...rest };
 };

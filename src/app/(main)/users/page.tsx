@@ -8,7 +8,8 @@ import { redirect } from "next/navigation";
 import { useState, useRef, useEffect, Fragment } from "react";
 
 const Users = () => {
-  const session = useGetSession();
+  const { data: session, isPending: sessionLoading } = useGetSession();
+
   const token = session?.session;
   const bToken = useGetToken();
 
@@ -52,7 +53,7 @@ const Users = () => {
     }
   }, [userList]);
 
-  if (!session.isPending && session?.user?.role !== "ADMIN") redirect("/");
+  if (!sessionLoading && session?.user?.role !== "ADMIN") redirect("/");
   return (
     <div className="w-100 overflow-auto">
       <h1 className="text-2xl font-bold text-center mb-6">Orders</h1>

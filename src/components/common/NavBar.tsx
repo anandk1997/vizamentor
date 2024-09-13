@@ -22,7 +22,7 @@ function NavBar() {
   const queryClient = useQueryClient();
 
   const router = useRouter();
-  const session = useGetSession();
+  const { data: session } = useGetSession();
   const token = session?.session;
   const bToken = useGetToken();
 
