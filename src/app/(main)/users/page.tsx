@@ -1,6 +1,7 @@
 "use client";
 
 import { useGetSession } from "@/hooks/useGetSession";
+import { useGetToken } from "@/hooks/useGetToken";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { redirect } from "next/navigation";
@@ -9,6 +10,8 @@ import { useState, useRef, useEffect, Fragment } from "react";
 const Users = () => {
   const session = useGetSession();
   const token = session?.session;
+  const bToken = useGetToken();
+
   const [openUser, setOpenUser] = useState<string | null>(null);
   const [heights, setHeights] = useState<Record<string, number>>({});
 
@@ -18,11 +21,7 @@ const Users = () => {
     if (!token) return;
 
     try {
-      const { data } = await axios.get("/api/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axios.get("/api/users", bToken);
 
       return data?.data;
     } catch (error) {

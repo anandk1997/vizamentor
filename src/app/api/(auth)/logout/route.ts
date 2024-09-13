@@ -10,15 +10,6 @@ export async function GET(request: Request) {
 
     await logout();
 
-    // const url = new URL(request.url);
-    // const userId = url.searchParams.get("userId");
-
-    // if (!userId) return customErrorResponse("User ID is required", 400);
-
-    // await dbConnect();
-
-    // const orders = await Order.find({ userId, paymentStatus: "completed" });
-
     return NextResponse.json({ message: "Logout Success" }, { status: 200 });
   } catch (error) {
     console.error("error", error);

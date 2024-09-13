@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { useGetSession } from "@/hooks/useGetSession";
+import { useGetToken } from "@/hooks/useGetToken";
 
 export const UpdatePassword = () => {
   const initialState = {
@@ -16,6 +17,7 @@ export const UpdatePassword = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const session = useGetSession();
+  const bToken = useGetToken();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -40,11 +42,8 @@ export const UpdatePassword = () => {
           ...formData,
           id: session?.user?._id,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${session?.session}`,
-          },
-        },
+
+        bToken,
       );
 
       toast.success("Password updated successfully");

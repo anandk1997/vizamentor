@@ -9,6 +9,7 @@ import Script from "next/script";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useGetSession } from "@/hooks/useGetSession";
+import { useGetToken } from "@/hooks/useGetToken";
 
 function TopSellingSection() {
   const router = useRouter();
@@ -16,6 +17,7 @@ function TopSellingSection() {
 
   const token = session?.session;
   const user = session?.user;
+  const bToken = useGetToken();
 
   const [loadingItemId, setLoadingItemId] = useState<string | null>(null);
 
@@ -95,9 +97,7 @@ function TopSellingSection() {
 
     try {
       const { data } = await axios.get("/api/getOrders", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        ...bToken,
 
         params: { userId: user?._id },
       });

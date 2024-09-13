@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useGetSession } from "@/hooks/useGetSession";
 import { redirect } from "next/navigation";
 import { UpdatePassword } from "./updatePassword";
+import { useGetToken } from "@/hooks/useGetToken";
 
 export function UpdateProfile() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ export function UpdateProfile() {
   const [isLoading, setIsLoading] = useState(false);
 
   const session = useGetSession();
+  const bToken = useGetToken();
 
   useEffect(() => {
     if (!session?.session) return;
@@ -49,11 +51,8 @@ export function UpdateProfile() {
           ...formData,
           id: session?.user?._id,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${session?.session}`,
-          },
-        },
+
+        bToken,
       );
 
       toast.success(data?.message);
