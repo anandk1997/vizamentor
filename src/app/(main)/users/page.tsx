@@ -35,8 +35,6 @@ const Users = () => {
     queryFn: getUsers,
   });
 
-  if (session?.user?.role !== "ADMIN") redirect("/");
-
   const toggleOrderDetails = (email: string) => {
     setOpenUser(openUser === email ? null : email);
   };
@@ -55,6 +53,7 @@ const Users = () => {
     }
   }, [userList]);
 
+  if (!session.isPending && session?.user?.role !== "ADMIN") redirect("/");
   return (
     <div className="w-100 overflow-auto">
       <h1 className="text-2xl font-bold text-center mb-6">Orders</h1>
@@ -146,7 +145,7 @@ const Users = () => {
                                 <tbody className="bg-white divide-y divide-gray-200">
                                   {user.orderDetails.map(
                                     (order: any, index: number) => (
-                                      <tr className="hover:bg-gray-50 cursor-pointer">
+                                      <tr className="hover:bg-gray-50">
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                           {order.amount}
                                         </td>

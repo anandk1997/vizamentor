@@ -20,13 +20,15 @@ export function UpdateProfile() {
   const session = useGetSession();
 
   useEffect(() => {
+    if (!session?.session) return;
+
     setFormData((prev) => ({
       ...prev,
       email: session?.user?.email,
       phone: session?.user?.phone,
       address: session?.user?.address,
     }));
-  }, [session]);
+  }, [session?.session]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -67,8 +69,7 @@ export function UpdateProfile() {
     }
   };
 
-  if (!session?.session) return redirect("/");
-
+  if (!session.isPending && !session?.session) redirect("/");
   return (
     <div className="flex flex-col md:flex-row justify-center align-middle h-[100vh] w-100">
       <div className="md:w-[48%] h-full mx-auto mt-10 p-8 border border-gray-300 rounded-lg shadow-lg">
