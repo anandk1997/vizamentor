@@ -1,6 +1,7 @@
 import { dbConnect } from "@/database/database";
 import Order from "@/database/model/Order";
 import { env } from "@/lib/env/intex";
+import { checkRateLimit } from "@/lib/rateLimiter";
 import { customErrorResponse } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 import Razorpay from "razorpay";
@@ -12,6 +13,15 @@ const razorpay = new Razorpay({
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for") || "";
+
+    if (!(await checkRateLimit(ip))) {
+      return customErrorResponse(
+        "Too many requests, Try again in 5 minutes",
+        429,
+      );
+    }
+
     const { amount, userId, productId } = (await request.json()) as {
       amount: string;
       userId: string;

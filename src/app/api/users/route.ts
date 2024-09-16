@@ -3,6 +3,7 @@ import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { NextResponse } from "next/server";
 import { checkAuth } from "../(auth)/sessions";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
 export async function GET(request: Request) {
   try {
@@ -12,6 +13,15 @@ export async function GET(request: Request) {
 
     if (tokenValidation?.data?.user?.role !== "ADMIN") {
       return customErrorResponse("You are not authorized", 403);
+    }
+
+    const ip = request.headers.get("x-forwarded-for") || "";
+
+    if (!(await checkRateLimit(ip))) {
+      return customErrorResponse(
+        "Too many requests, Try again in 5 minutes",
+        429,
+      );
     }
 
     await dbConnect();

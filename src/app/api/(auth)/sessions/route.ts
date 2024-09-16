@@ -1,9 +1,19 @@
 import { customErrorResponse } from "@/lib/utils";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getSession } from ".";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for") || "";
+
+    if (!(await checkRateLimit(ip))) {
+      return customErrorResponse(
+        "Too many requests, Try again in 5 minutes",
+        429,
+      );
+    }
+
     const session = await getSession();
 
     const data = {

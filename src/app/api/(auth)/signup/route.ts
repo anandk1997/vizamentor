@@ -3,9 +3,19 @@ import bcrypt from "bcryptjs";
 import User from "@/database/model/User";
 import { dbConnect } from "@/database/database";
 import { customErrorResponse } from "@/lib/utils";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for") || "";
+
+    if (!(await checkRateLimit(ip))) {
+      return customErrorResponse(
+        "Too many requests, Try again in 5 minutes",
+        429,
+      );
+    }
+
     await dbConnect();
 
     const { name, email, password, phone, address } = await request.json();

@@ -6,9 +6,19 @@ import User from "@/database/model/User";
 import { customErrorResponse } from "@/lib/utils";
 import { env } from "@/lib/env/intex";
 import { createSession } from "../sessions";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
 export async function POST(request: Request, res: Response) {
   try {
+    const ip = request.headers.get("x-forwarded-for") || "";
+
+    if (!(await checkRateLimit(ip))) {
+      return customErrorResponse(
+        "Too many requests, Try again in 5 minutes",
+        429,
+      );
+    }
+
     await dbConnect();
 
     const { email, password } = await request.json();

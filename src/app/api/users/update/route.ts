@@ -4,12 +4,22 @@ import User from "@/database/model/User";
 import { dbConnect } from "@/database/database";
 import { customErrorResponse } from "@/lib/utils";
 import { checkAuth } from "../../(auth)/sessions";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
 export async function PATCH(request: Request) {
   try {
     const tokenValidation: any = await checkAuth(request);
 
     if (!tokenValidation.success) return tokenValidation;
+
+    const ip = request.headers.get("x-forwarded-for") || "";
+
+    if (!(await checkRateLimit(ip))) {
+      return customErrorResponse(
+        "Too many requests, Try again in 5 minutes",
+        429,
+      );
+    }
 
     await dbConnect();
 

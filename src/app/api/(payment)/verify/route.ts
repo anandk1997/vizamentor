@@ -4,6 +4,7 @@ import { env } from "@/lib/env/intex";
 import { customErrorResponse } from "@/lib/utils";
 import { dbConnect } from "@/database/database";
 import Order from "@/database/model/Order";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
 const generatedSignature = (
   razorpayOrderId: string,
@@ -24,6 +25,15 @@ const generatedSignature = (
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for") || "";
+
+    if (!(await checkRateLimit(ip))) {
+      return customErrorResponse(
+        "Too many requests, Try again in 5 minutes",
+        429,
+      );
+    }
+
     const { orderCreationId, razorpayPaymentId, razorpaySignature } =
       await request.json();
 

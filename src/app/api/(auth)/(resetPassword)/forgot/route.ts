@@ -5,9 +5,19 @@ import { dbConnect } from "@/database/database";
 import User from "@/database/model/User";
 import { env } from "@/lib/env/intex";
 import { customErrorResponse } from "@/lib/utils";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for") || "";
+
+    if (!(await checkRateLimit(ip))) {
+      return customErrorResponse(
+        "Too many requests, Try again in 5 minutes",
+        429,
+      );
+    }
+
     await dbConnect();
 
     const { email } = await request.json();
