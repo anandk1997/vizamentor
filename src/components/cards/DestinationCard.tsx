@@ -71,7 +71,7 @@ function DestinationCard({
       </div>
       {highlighted && (
         <div className="absolute bottom-[5rem] right-[-4rem] -z-10 hidden md:block">
-          <img src="/images/stylish-ring.png" alt="curly ring" />
+          <img src="/images/stylish-ring.png" alt="curly ring-3" />
         </div>
       )}
     </div>

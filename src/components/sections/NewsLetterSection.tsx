@@ -12,7 +12,7 @@ function NewsLetterSection() {
         </p>
 
         <div className="flex justify-between flex-col md:flex-row items-center gap-8">
-          <div className="relative flex-grow z-[10]">
+          <div className="relative grow z-10">
             <Input
               type="email"
               placeholder="Your email"
@@ -25,7 +25,7 @@ function NewsLetterSection() {
 
           <MainButton
             text="Subscribe"
-            classes="w-[9.25rem] h-[3.25rem] z-[10]"
+            classes="w-[9.25rem] h-[3.25rem] z-10"
             isGradient
           />
         </div>
@@ -33,7 +33,7 @@ function NewsLetterSection() {
       <div className="absolute bottom-0  left-4 z-0 opacity-25">
         <img
           src="/images/round-ring-left.png"
-          alt="round ring left"
+          alt="round ring-3 left"
           className="w-[200px]"
         />
       </div>
@@ -45,7 +45,7 @@ function NewsLetterSection() {
       <div className="absolute top-0 right-0 opacity-25">
         <img
           src="/images/round-ring-right.png"
-          alt="round ring right"
+          alt="round ring-3 right"
           className="w-[200px]"
         />
       </div>

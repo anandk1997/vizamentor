@@ -114,7 +114,7 @@ function NavBar() {
                       <MainButton
                         text="Sign up"
                         // text="Sign up"
-                        classes="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
+                        classes="bg-transparent text-navText font-[500] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
                       />
                     </Link>
                   </>
@@ -143,7 +143,7 @@ function NavBar() {
       </div>
       {/* MOBILE */}
       <div
-        className={` block lg:hidden shadow-sm  fixed top-0 w-full z-[999] py-4 animate-in fade-in zoom-in h-[72px]  ${
+        className={` block lg:hidden shadow-sm  fixed top-0 w-full z-999 py-4 animate-in fade-in zoom-in h-[72px]  ${
           menu ? " bg-primary py-2" : "bg-white"
           // "bg-white"
         } `}

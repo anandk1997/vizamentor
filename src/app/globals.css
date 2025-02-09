@@ -1,6 +1,89 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --background-image-bg-img-1: url("/img-1.png");
+  --background-image-bg-img-2: url("/img-2.png");
+  --background-image-feature-bg: url("/feature-bg.png");
+  --background-image-pattern: url("/pattern.png");
+  --background-image-pattern-2: url("/pattern-bg.png");
+
+  --breakpoint-xs: 400px;
+  --breakpoint-3xl: 1680px;
+  --breakpoint-4xl: 2200px;
+
+  --container-10xl: 1512px;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  --color-primary: #df6951;
+  --color-secondary: #f1a501;
+  --color-light-blue: #181e4b;
+  --color-light-gray: #5e6282;
+  --color-light-gray-alt: #686d77;
+  --color-light-gray-alt2: #84829a;
+  --color-white: #fff;
+  --color-title: #14183e;
+  --color-subtitle: #1e1d4c;
+  --color-light-black: #080809;
+  --color-light-pink: #8a79df;
+  --color-nav-text: #212832;
+
+  --radius-slight: 0.625rem;
+  --radius-normal: 0.3125rem;
+  --radius-medium: 1.5rem;
+  --radius-extra-large: 8.0625rem;
+
+  --leading-large: 5.01956rem;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-xs)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 .poppins {
   font-family: Poppins, sans-serif;

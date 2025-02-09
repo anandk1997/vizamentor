@@ -71,7 +71,7 @@ export function UpdateProfile() {
 
   if (!isPending && !session?.session) redirect("/");
   return (
-    <div className="flex flex-col md:flex-row justify-center align-middle h-[100vh] w-100">
+    <div className="flex flex-col md:flex-row justify-center align-middle h-[100vh] w-full">
       <div className="md:w-[48%] h-full mx-auto mt-10 p-8 border border-gray-300 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold text-center mb-6">Update Profile</h1>
         <form onSubmit={handleUpdate} className="space-y-4">
@@ -89,7 +89,7 @@ export function UpdateProfile() {
               value={session?.name ?? ""}
               onChange={handleChange}
               disabled
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none bg-slate-300 focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-xs focus:outline-hidden bg-slate-300 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
 
@@ -107,7 +107,7 @@ export function UpdateProfile() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-xs focus:outline-hidden focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
 
@@ -125,7 +125,7 @@ export function UpdateProfile() {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-xs focus:outline-hidden focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
 
@@ -143,14 +143,14 @@ export function UpdateProfile() {
               value={formData.address}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-xs focus:outline-hidden focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="mb-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="mb-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             {isLoading ? "loading" : "Update"}
           </button>

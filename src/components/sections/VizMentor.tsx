@@ -101,7 +101,7 @@ function MultiStepLoaderDemo() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="flex items-center justify-center z-[1111111]">
+    <div className="flex items-center justify-center z-1111111">
       <Loader loadingStates={loadingStates} loading={loading} duration={2000} />
 
       <button

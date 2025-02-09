@@ -1,0 +1,14 @@
+services:
+  app:
+    container_name: vizamentor
+    build: .
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+          ignore:
+            - node_modules/
+    ports:
+      - "3000:3000"
+    command: ["npm", "run", "dev"]
+    restart: always

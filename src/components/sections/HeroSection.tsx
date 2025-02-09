@@ -5,7 +5,7 @@ import MainButton from "../common/MainButton";
 
 function HeroSection({ setIsDemo }: any) {
   return (
-    <section className="flex justify-between items-center mt-16 md:z-[9999]">
+    <section className="flex justify-between items-center mt-16 md:z-9999">
       <div className="pt-32 md:pt-4">
         <p className="text-[1.128rem] font-[700] text-primary uppercase mb-4">
           Your Trusted Partner in aquiring skills.
@@ -48,7 +48,7 @@ function HeroSection({ setIsDemo }: any) {
           >
             <img
               src="/images/play-shadow.png"
-              alt="rounded play icon with shadow"
+              alt="rounded-sm play icon with shadow-sm"
             />
             <p className="text-lightGrayAlt -mt-6">Play Demo</p>
           </div>

@@ -42,7 +42,7 @@ export const checkAuth = async (request: Request) => {
 };
 
 export const logout = async () => {
-  cookies().set("session", "", { expires: new Date(0) });
+  (await cookies()).set("session", "", { expires: new Date(0) });
 };
 
 const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
@@ -50,12 +50,12 @@ const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
 export const createSession = async (user: any) => {
   const session = await encrypt({ user, expires });
 
-  cookies().set("session", session, { expires, httpOnly: true });
+  (await cookies()).set("session", session, { expires, httpOnly: true });
 };
 
 export async function getSession() {
   try {
-    const session = cookies().get("session")?.value;
+    const session = (await cookies()).get("session")?.value;
 
     if (!session) return null;
     const decryptedData = await decrypt(session);

@@ -11,14 +11,14 @@ function FooterSection() {
             VizaMentor
           </p>
 
-          <span className="text-center flex m-auto w-100 justify-center align-middle">
+          <span className="text-center flex m-auto w-full justify-center align-middle">
             A Coaching Institute
           </span>
           {/* <p className="text-lightGray mt-[1.19rem]">
             Book your trip in minute, get full Control for much longer.
           </p> */}
         </div>
-        <div className="flex gap-8 flex-grow justify-between">
+        <div className="flex gap-8 grow justify-between">
           {/* <div className="flex flex-col gap-4">
             <p className="text-lightBlack font-[700] text-[1.3125rem]">
               Company

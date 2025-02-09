@@ -55,7 +55,7 @@ const Users = () => {
 
   if (!sessionLoading && session?.role !== "ADMIN") redirect("/");
   return (
-    <div className="w-100 overflow-auto">
+    <div className="w-full overflow-auto">
       <h1 className="text-2xl font-bold text-center mb-6">Orders</h1>
 
       <table className="min-w-full divide-y divide-gray-200">
