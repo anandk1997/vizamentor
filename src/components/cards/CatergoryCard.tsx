@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface IProps {
@@ -15,13 +16,13 @@ function CatergoryCard({ iconUrl, title, description, highlighted }: IProps) {
       }`}
     >
       <div>
-        <img src={iconUrl} alt="category card icon" className="h-[80px]" />
+        <Image src={iconUrl} alt="category card icon" className="h-[80px]" />
       </div>
       <p className="text-subtitle text-[1.2rem] font-[600]">{title}</p>
       <p className="text-lightGray text-[1rem] font-bold">{description}</p>
       {highlighted && (
         <div className="absolute -bottom-8 -left-10 -z-10">
-          <img src="/images/rectangle-shape.png" alt="rectangle shape" />
+          <Image src="/images/rectangle-shape.png" alt="rectangle shape" />
         </div>
       )}
     </div>

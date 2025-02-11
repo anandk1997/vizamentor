@@ -63,7 +63,6 @@ export const FollowerPointerCard = ({
 export const FollowPointer = ({
   x,
   y,
-  title,
 }: {
   x: any;
   y: any;

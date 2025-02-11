@@ -8,7 +8,7 @@ import { env } from "@/lib/env/intex";
 import { createSession } from "../sessions";
 import { checkRateLimit } from "@/lib/rateLimiter";
 
-export async function POST(request: Request, res: Response) {
+export async function POST(request: Request) {
   try {
     const ip = request.headers.get("x-forwarded-for") || "";
 

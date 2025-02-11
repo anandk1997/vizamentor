@@ -5,10 +5,8 @@ const MONGODB_URI = env.MONGO_URI;
 
 if (!MONGODB_URI) throw new Error("Mongo URI is required");
 
-// @ts-ignore
 let cached = global.mongoose;
 
-// @ts-ignore
 if (!cached) cached = global.mongoose = { conn: null, promise: null };
 
 export async function dbConnect() {

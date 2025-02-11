@@ -31,7 +31,7 @@ export function UpdateProfile() {
       phone: session?.phone,
       address: session?.address,
     }));
-  }, [session?.session]);
+  }, [session?.session, session?.email, session?.phone, session?.address]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

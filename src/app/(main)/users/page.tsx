@@ -145,7 +145,10 @@ const Users = () => {
                                 <tbody className="bg-white divide-y divide-gray-200">
                                   {user.orderDetails.map(
                                     (order: any, index: number) => (
-                                      <tr className="hover:bg-gray-50">
+                                      <tr
+                                        className="hover:bg-gray-50"
+                                        key={index}
+                                      >
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                           {order.amount}
                                         </td>

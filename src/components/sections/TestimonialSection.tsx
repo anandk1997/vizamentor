@@ -5,24 +5,25 @@ import { ImagesSlider } from "../ui/images-slider";
 import React from "react";
 
 function TestimonialSection() {
-  const reviews = [
-    {
-      id: 0,
-      imageUrl: "/images/mike.png",
-      reviewerName: "Mike taylor",
-      position: "Lahore, Pakistan",
-      review:
-        "On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.",
-    },
-    {
-      id: 2,
-      imageUrl: "/images/mike.png",
-      reviewerName: "Chris Thomas",
-      position: "CEO of Red Button",
-      review:
-        "On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.",
-    },
-  ];
+  // const reviews = [
+  //   {
+  //     id: 0,
+  //     imageUrl: "/images/mike.png",
+  //     reviewerName: "Mike taylor",
+  //     position: "Lahore, Pakistan",
+  //     review:
+  //       "On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.",
+  //   },
+  //   {
+  //     id: 2,
+  //     imageUrl: "/images/mike.png",
+  //     reviewerName: "Chris Thomas",
+  //     position: "CEO of Red Button",
+  //     review:
+  //       "On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.",
+  //   },
+  // ];
+
   return (
     <section className="flex justify-between flex-col xl:flex-row items-center lg:-mt-[5rem] gap-16">
       <div>

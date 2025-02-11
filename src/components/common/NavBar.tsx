@@ -28,7 +28,7 @@ function NavBar() {
 
   const toggleMenu = () => setMenu(!menu);
 
-  const { signOut, session: sess } = useClerk();
+  const { session: sess } = useClerk();
 
   const logout = async () => {
     try {

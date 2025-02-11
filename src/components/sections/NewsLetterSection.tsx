@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "../ui/input";
 import MainButton from "../common/MainButton";
+import Image from "next/image";
 
 function NewsLetterSection() {
   return (
@@ -19,7 +20,7 @@ function NewsLetterSection() {
               className="bg-white h-[3.5rem] pl-[3rem]"
             />
             <div className="absolute top-5 left-4">
-              <img src="/images/envelop.png" alt="envelope icon" />
+              <Image src="/images/envelop.png" alt="envelope icon" />
             </div>
           </div>
 
@@ -31,7 +32,7 @@ function NewsLetterSection() {
         </div>
       </div>
       <div className="absolute bottom-0  left-4 z-0 opacity-25">
-        <img
+        <Image
           src="/images/round-ring-left.png"
           alt="round ring-3 left"
           className="w-[200px]"
@@ -39,11 +40,11 @@ function NewsLetterSection() {
       </div>
 
       <div className="absolute -top-4 -right-4">
-        <img src="/images/send-shape.png" alt="send icon" />
+        <Image src="/images/send-shape.png" alt="send icon" />
       </div>
 
       <div className="absolute top-0 right-0 opacity-25">
-        <img
+        <Image
           src="/images/round-ring-right.png"
           alt="round ring-3 right"
           className="w-[200px]"
@@ -51,7 +52,7 @@ function NewsLetterSection() {
       </div>
 
       <div className="absolute -bottom-16 right-[-6rem] hidden md:block">
-        <img src="/images/plus-group.png" alt="send icon" />
+        <Image src="/images/plus-group.png" alt="send icon" />
       </div>
     </div>
   );

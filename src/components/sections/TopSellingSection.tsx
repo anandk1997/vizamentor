@@ -143,15 +143,15 @@ function TopSellingSection() {
     },
   ];
 
-  const currentDate = new Date();
-  const futureDate = new Date(currentDate.getTime() + 2 * 24 * 60 * 60 * 1000);
+  // const currentDate = new Date();
+  // const futureDate = new Date(currentDate.getTime() + 2 * 24 * 60 * 60 * 1000);
 
-  const options: Intl.DateTimeFormatOptions = {
-    month: "short",
-    day: "2-digit",
-  };
+  // const options: Intl.DateTimeFormatOptions = {
+  //   month: "short",
+  //   day: "2-digit",
+  // };
 
-  const formattedDate = futureDate.toLocaleDateString("en-US", options);
+  // const formattedDate = futureDate.toLocaleDateString("en-US", options);
 
   const [seconds, setSeconds] = useState(895);
   const [isRunning, setIsRunning] = useState(false);

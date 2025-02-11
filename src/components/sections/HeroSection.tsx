@@ -2,6 +2,7 @@
 
 import React from "react";
 import MainButton from "../common/MainButton";
+import Image from "next/image";
 
 function HeroSection({ setIsDemo }: any) {
   return (
@@ -17,7 +18,7 @@ function HeroSection({ setIsDemo }: any) {
             <div className="flex  flex-col">
               <span className="ml-8 z-10">Gyaan</span>
 
-              <img
+              <Image
                 src="/images/stylish-underline.png"
                 alt="stylish underline"
                 className="-mt-4 z-0 block"
@@ -46,7 +47,7 @@ function HeroSection({ setIsDemo }: any) {
             className="flex items-center mt-6 hover:cursor-pointer"
             onClick={setIsDemo}
           >
-            <img
+            <Image
               src="/images/play-shadow.png"
               alt="rounded-sm play icon with shadow-sm"
             />
@@ -55,7 +56,7 @@ function HeroSection({ setIsDemo }: any) {
         </div>
       </div>
       <div>
-        <img
+        <Image
           src="/images/lady-with-aircraft.png"
           alt="girl with phone with aircrafts on the background"
         />

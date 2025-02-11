@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface IProps {
@@ -24,7 +25,7 @@ function DestinationCard({
   return (
     <div className="flex relative flex-col justify-between  pb-[2.63rem] group">
       <div className="  object-fill ">
-        <img
+        <Image
           src={imageUrl}
           alt="destination image"
           className="w-[314px] h-[20.43rem]  object-cover rounded-t-[1.5rem]"
@@ -52,7 +53,7 @@ function DestinationCard({
         </div>
         <div className="flex gap-4 items-center">
           <div>
-            <img src="/images/send-icon.png" alt="send icon" />
+            <Image src="/images/send-icon.png" alt="send icon" />
           </div>
           <p className="text-lightGray font-bold">{duration}</p>
         </div>
@@ -71,7 +72,7 @@ function DestinationCard({
       </div>
       {highlighted && (
         <div className="absolute bottom-[5rem] right-[-4rem] -z-10 hidden md:block">
-          <img src="/images/stylish-ring.png" alt="curly ring-3" />
+          <Image src="/images/stylish-ring.png" alt="curly ring-3" />
         </div>
       )}
     </div>

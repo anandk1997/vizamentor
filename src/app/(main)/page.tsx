@@ -7,6 +7,7 @@ import { Satisfied } from "@/components/sections/Satisfied";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import TopSellingSection from "@/components/sections/TopSellingSection";
 import { VizMentor } from "@/components/sections/VizMentor";
+import Image from "next/image";
 import { useReducer } from "react";
 
 export default function Home() {
@@ -21,11 +22,8 @@ export default function Home() {
       {isDemo && (
         <div className="">
           <iframe
-            className="mt-[-100px] ms-[200px]"
+            className="mt-[-100px] ms-[200px] h-[500px]"
             src={embedUrl}
-            style={{
-              height: "500px",
-            }}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -39,15 +37,18 @@ export default function Home() {
       <VizMentor />
 
       <div className="absolute top-0 right-0 -z-10">
-        <img src="/images/blob-shape.png" alt="blob background shape" />
+        <Image src="/images/blob-shape.png" alt="blob background shape" />
       </div>
       <div className="absolute top-0 left-0 -z-10">
-        <img src="/images/top-left-gradient.png" alt="blob background shape" />
+        <Image
+          src="/images/top-left-gradient.png"
+          alt="blob background shape"
+        />
       </div>
       <div className="relative">
         <CategorySection />
         <div className="absolute top-0 right-0">
-          <img src="/images/plus-group.png" alt="blob background shape" />
+          <Image src="/images/plus-group.png" alt="blob background shape" />
         </div>
       </div>
 
