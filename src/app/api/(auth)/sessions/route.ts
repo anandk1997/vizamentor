@@ -16,8 +16,6 @@ export async function GET(request: NextRequest) {
 
     const session = await getSession();
 
-    console.log("session..............", session);
-
     const data = {
       session: session?.session,
       id: session?.user?._id,

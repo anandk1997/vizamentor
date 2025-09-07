@@ -26,7 +26,12 @@ export async function POST(request: Request) {
     if (!email || !password)
       return customErrorResponse("Missing required fields", 400);
 
-    const user = await User.findOne({ email });
+    const userData = await User.findOne({ email });
+
+    const user = {
+      ...userData.toObject(),
+      _id: userData._id.toString(),
+    };
 
     if (!user) return customErrorResponse("User not found", 401);
 
