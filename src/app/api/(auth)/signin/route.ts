@@ -29,11 +29,11 @@ export async function POST(request: Request) {
     const userData = await User.findOne({ email });
 
     const user = {
-      ...userData.toObject(),
-      _id: userData._id.toString(),
+      ...userData?.toObject(),
+      _id: userData?._id?.toString(),
     };
 
-    if (!user) return customErrorResponse("User not found", 401);
+    if (!userData) return customErrorResponse("User not found", 401);
 
     const isMatch = await bcrypt.compare(password, user.password);
 
