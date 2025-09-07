@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
       { message: "Payment verified successfully", isOk: true },
       { status: 200 },
     );
-  } catch (error) {
+  } catch {
     return customErrorResponse("Internal Server Error", 500);
   }
 }

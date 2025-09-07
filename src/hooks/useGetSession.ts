@@ -6,6 +6,8 @@ export const useGetSession = () => {
     try {
       const { data } = await axios.get("/api/sessions");
 
+      console.log("data.............", data);
+
       return data?.data;
     } catch (error) {
       console.error("error getting session", error);

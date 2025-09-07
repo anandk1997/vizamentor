@@ -23,6 +23,7 @@ function TopSellingSection() {
   const createOrderId = async (productId: string, amount?: string) => {
     if (!token) return router.push("/sign-in");
 
+    console.log("session?.id..............", session?.id);
     try {
       const { data: response } = await axios.post("/api/checkout", {
         amount: amount ?? 3000,
@@ -102,7 +103,7 @@ function TopSellingSection() {
       });
 
       return data?.data;
-    } catch (error) {
+    } catch {
       return [];
     }
   };

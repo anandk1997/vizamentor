@@ -25,7 +25,7 @@ const Users = () => {
       const { data } = await axios.get("/api/users", bToken);
 
       return data?.data;
-    } catch (error) {
+    } catch {
       return [];
     }
   };

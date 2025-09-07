@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, cubicBezier, Variants } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
 export const ImagesSlider = ({
@@ -36,8 +36,8 @@ export const ImagesSlider = ({
       });
 
       Promise.all(loadPromises)
-        .then((loadedImages) => {
-          setLoadedImages(loadedImages as string[]);
+        .then((loaded) => {
+          setLoadedImages(loaded as string[]);
         })
         .catch((error) => console.error("Failed to load images", error));
     };
@@ -69,20 +69,18 @@ export const ImagesSlider = ({
     window.addEventListener("keydown", handleKeyDown);
 
     // autoplay
-    let interval: any;
+    let interval: NodeJS.Timeout | undefined;
     if (autoplay) {
-      interval = setInterval(() => {
-        handleNext();
-      }, 5000);
+      interval = setInterval(handleNext, 5000);
     }
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      clearInterval(interval);
+      if (interval) clearInterval(interval);
     };
   }, [autoplay, images.length]);
 
-  const slideVariants = {
+  const slideVariants: Variants = {
     initial: {
       scale: 0,
       opacity: 0,
@@ -94,7 +92,7 @@ export const ImagesSlider = ({
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: [0.645, 0.045, 0.355, 1.0],
+        ease: cubicBezier(0.645, 0.045, 0.355, 1.0),
       },
     },
     upExit: {
@@ -121,9 +119,7 @@ export const ImagesSlider = ({
         "overflow-hidden h-full w-full relative flex items-center justify-center",
         className,
       )}
-      style={{
-        perspective: "1000px",
-      }}
+      style={{ perspective: "1000px" }}
     >
       {areImagesLoaded && children}
       {areImagesLoaded && overlay && (

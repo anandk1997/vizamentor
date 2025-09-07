@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
     try {
       decoded = jwt.verify(token, env.JWT_SECRET!);
-    } catch (err) {
+    } catch {
       return customErrorResponse("Invalid or expired token", 400);
     }
 

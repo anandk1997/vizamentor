@@ -1,8 +1,8 @@
+import { env } from "@/lib/env/intex";
+import { customErrorResponse } from "@/lib/utils";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { env } from "@/lib/env/intex";
-import { customErrorResponse } from "@/lib/utils";
 
 const key = new TextEncoder().encode(env.JWT_SECRET);
 
@@ -20,7 +20,7 @@ export async function decrypt(input: string): Promise<any> {
       algorithms: ["HS256"],
     });
     return payload;
-  } catch (error) {
+  } catch {
     return "Invalid Token";
   }
 }
@@ -60,7 +60,7 @@ export async function getSession() {
     if (!session) return null;
     const decryptedData = await decrypt(session);
     return { ...decryptedData, session };
-  } catch (error) {
+  } catch {
     await logout();
   }
 }
