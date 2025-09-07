@@ -20,7 +20,7 @@ function NewsLetterSection() {
               className="bg-white h-[3.5rem] pl-[3rem]"
             />
             <div className="absolute top-5 left-4">
-              <Image src="/images/envelop.png" alt="envelope icon" />
+              <img src="/images/envelop.png" alt="envelope icon" />
             </div>
           </div>
 
@@ -40,7 +40,7 @@ function NewsLetterSection() {
       </div>
 
       <div className="absolute -top-4 -right-4">
-        <Image src="/images/send-shape.png" alt="send icon" />
+        <img src="/images/send-shape.png" alt="send icon" />
       </div>
 
       <div className="absolute top-0 right-0 opacity-25">
@@ -52,7 +52,7 @@ function NewsLetterSection() {
       </div>
 
       <div className="absolute -bottom-16 right-[-6rem] hidden md:block">
-        <Image src="/images/plus-group.png" alt="send icon" />
+        <img src="/images/plus-group.png" alt="send icon" />
       </div>
     </div>
   );

@@ -1,6 +1,3 @@
-import Image from "next/image";
-import React from "react";
-
 interface IProps {
   imageUrl: string;
   review: string;
@@ -34,7 +31,7 @@ function TestimonialCard({
         <p className="text-lightGray font-[500] text-[0.875rem]">{position}</p>
         <div className="absolute top-[-4rem] md:left-[-4rem]">
           {!isBackdrop && (
-            <Image
+            <img
               src={imageUrl}
               alt="reviewer photo"
               className="w-[4.25rem] h-[4.25rem] rounded-full"

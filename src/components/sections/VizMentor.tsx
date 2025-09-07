@@ -17,7 +17,7 @@ export const VizMentor = () => {
 
       <div className="flex flex-col md:flex-row items-center md:w-[80%] m-auto overflow-hidden">
         {/* <div className="h-[700px] mt-[-50px] bg-red-700 w-[50%] imm shadow-[-6.0px_8.0px_8.0px_black]"> */}
-        {/* <Image src="" height={0} width={0} alt=''/> */}
+        {/* <img src="" height={0} width={0} alt=''/> */}
 
         {/* kjjnkhkjkjhkj */}
         {/* </div> */}

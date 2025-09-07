@@ -15,6 +15,7 @@ import { useGetToken } from "@/hooks/useGetToken";
 import { useQueryClient } from "@tanstack/react-query";
 import { CgProfile } from "react-icons/cg";
 import { FaUserFriends } from "react-icons/fa";
+import { routes } from "@/lib/utils/constants/routes";
 
 function NavBar() {
   const [menu, setMenu] = useState(false);
@@ -151,7 +152,7 @@ function NavBar() {
         <div className="flex justify-between mx-[10px]">
           <div className="flex gap-[50px] text-[16px] items-center select-none">
             {!menu && (
-              <Link href="/">
+              <Link href={routes.HOME}>
                 <Image
                   src="/VisaMentor1.png"
                   width={80}

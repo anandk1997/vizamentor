@@ -4,14 +4,12 @@ import { FaFacebook, FaInstagram, FaWhatsapp, FaYoutube } from "react-icons/fa";
 
 function FooterSection() {
   return (
-    <section>
+    <section className="border-t border-[--border] pt-12">
       <div className="flex flex-col md:flex-row justify-between gap-8 ">
         <div>
-          <p className="text-4xl  text-black-600 font-bold font-serif">
-            VizaMentor
-          </p>
+          <p className="text-4xl font-bold font-serif">VizaMentor</p>
 
-          <span className="text-center flex m-auto w-full justify-center align-middle">
+          <span className="text-center flex m-auto w-full justify-center align-middle text-[--muted]">
             A Coaching Institute
           </span>
           {/* <p className="text-lightGray mt-[1.19rem]">
@@ -34,19 +32,17 @@ function FooterSection() {
             </div>
           </div> */}
           <div className="flex flex-col gap-4">
-            <p className="text-lightBlack font-[700] text-[1.3125rem]">
-              Contact
-            </p>
+            <p className="font-[700] text-[1.3125rem]">Contact</p>
             <div className="flex flex-col gap-2">
               <a
                 href="tel:+919914961214"
-                className="text-lightGray text-[1.125rem] font-[500]"
+                className="text-[--muted] text-[1.125rem] font-[500] hover:text-[--fg] transition-colors"
               >
                 +91 99149-61214
               </a>
               <a
                 href="tel:+916280434126"
-                className="text-lightGray text-[1.125rem] font-[500]"
+                className="text-[--muted] text-[1.125rem] font-[500] hover:text-[--fg] transition-colors"
               >
                 +91 62804-34126
               </a>
@@ -77,9 +73,7 @@ function FooterSection() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h1 className="text-lightBlack font-[700] text-[1.3125rem]">
-              Address
-            </h1>
+            <h1 className="font-[700] text-[1.3125rem]">Address</h1>
 
             <span>H no. 468</span>
 
@@ -90,21 +84,21 @@ function FooterSection() {
           <div className="flex flex-col gap-4">
             <Link
               href="/terms"
-              className="text-lightBlack font-[700] text-[1.3125rem]"
+              className="font-[700] text-[1.3125rem] hover:text-[--primary] transition-colors"
             >
               Terms & Conditions
             </Link>
 
             <Link
               href="/privacy"
-              className="text-lightBlack font-[700] text-[1.3125rem]"
+              className="font-[700] text-[1.3125rem] hover:text-[--primary] transition-colors"
             >
               Privacy Policy
             </Link>
 
             <Link
               href="/refund"
-              className="text-lightBlack font-[700] text-[1.3125rem]"
+              className="font-[700] text-[1.3125rem] hover:text-[--primary] transition-colors"
             >
               Refund Policy
             </Link>
@@ -174,7 +168,7 @@ function FooterSection() {
           </div> */}
         </div>
       </div>
-      <p className="my-[5.25rem] text-lightGray text-[0.875rem] font-[600] flex justify-center">
+      <p className="my-[5.25rem] text-[--muted] text-[0.875rem] font-[600] flex justify-center">
         All rights reserved@vizamentor.co
       </p>
     </section>

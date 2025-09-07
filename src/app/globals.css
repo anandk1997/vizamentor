@@ -3,6 +3,21 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* Modern brand palette */
+  --color-brand: #6c5ce7; /* primary */
+  --color-brand-foreground: #ffffff;
+  --color-brand-muted: #8e83ff;
+  --color-accent: #00c2a8; /* teal accent */
+  --color-accent-foreground: #05221e;
+
+  /* Surface & text tokens (light) */
+  --color-bg: #0b0c0f; /* used for dark gradient base, overridden in base layer */
+  --color-surface: #ffffff;
+  --color-surface-2: #f6f7fb;
+  --color-border: #e6e8f0;
+  --color-muted: #6b7280;
+  --color-text: #0f172a;
+
   --background-image-bg-img-1: url("/img-1.png");
   --background-image-bg-img-2: url("/img-2.png");
   --background-image-feature-bg: url("/feature-bg.png");
@@ -53,6 +68,39 @@
     to {
       height: 0;
     }
+  }
+}
+
+/* Base layer: modern light/dark system styles */
+@layer base {
+  :root {
+    color-scheme: light;
+    --bg: var(--color-surface);
+    --fg: var(--color-text);
+    --muted: var(--color-muted);
+    --border: var(--color-border);
+    --primary: var(--color-brand);
+    --primary-foreground: var(--color-brand-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --bg: #0b0c0f;
+    --fg: #e5e7eb;
+    --muted: #9aa0aa;
+    --border: #2a2f3a;
+    --primary: #7f6cff;
+    --primary-foreground: #ffffff;
+    --accent: #22e6c7;
+    --accent-foreground: #062722;
+  }
+
+  html,
+  body {
+    background: var(--bg);
+    color: var(--fg);
   }
 }
 

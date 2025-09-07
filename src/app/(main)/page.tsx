@@ -7,8 +7,9 @@ import { Satisfied } from "@/components/sections/Satisfied";
 import TestimonialSection from "@/components/sections/TestimonialSection";
 import TopSellingSection from "@/components/sections/TopSellingSection";
 import { VizMentor } from "@/components/sections/VizMentor";
-import Image from "next/image";
 import { useReducer } from "react";
+import bgImage from "@/assets/images/blob-shape.png";
+import Image from "next/image";
 
 export default function Home() {
   const [isDemo, setIsDemo] = useReducer((open) => !open, false);
@@ -36,19 +37,16 @@ export default function Home() {
 
       <VizMentor />
 
-      <div className="absolute top-0 right-0 -z-10">
-        <Image src="/images/blob-shape.png" alt="blob background shape" />
+      <div className="absolute top-0 right-0">
+        <Image src={bgImage} alt="blob background shape" />
       </div>
       <div className="absolute top-0 left-0 -z-10">
-        <Image
-          src="/images/top-left-gradient.png"
-          alt="blob background shape"
-        />
+        <img src="/images/top-left-gradient.png" alt="blob background shape" />
       </div>
       <div className="relative">
         <CategorySection />
         <div className="absolute top-0 right-0">
-          <Image src="/images/plus-group.png" alt="blob background shape" />
+          <img src="/images/plus-group.png" alt="blob background shape" />
         </div>
       </div>
 

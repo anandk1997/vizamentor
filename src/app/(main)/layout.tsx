@@ -14,9 +14,9 @@ export default function MainLayout({
 }) {
   return (
     <>
-      <main className="relative poppins  md:px-[9rem]">
+      <main className="relative poppins">
         <NavBar />
-        <div className="px-4 flex flex-col gap-[7.69rem] pt-20">
+        <div className="container px-4 md:px-8 lg:px-12 flex flex-col gap-16 md:gap-20 pt-24">
           {children}
           <FooterSection />
         </div>
